@@ -38,12 +38,8 @@ function Layout({ children, title }) {
       <div className={`sidebar-overlay${sidebarOpen ? ' open' : ''}`} onClick={closeSidebar} />
 
       <aside className={`sidebar${sidebarOpen ? ' open' : ''}`}>
-        <div className="sidebar-logo">
-          <span className="logo-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, background: '#16a34a', borderRadius: 8, fontFamily: 'Arial Black, sans-serif', fontWeight: 900, fontSize: 14, color: 'white', letterSpacing: '-1px', flexShrink: 0 }}>KZ</span>
-          <div>
-            <h1>KANDZ</h1>
-            <span>Communications</span>
-          </div>
+        <div className="sidebar-logo" style={{ padding: '14px 12px' }}>
+          <img src="/kandz-logo-white.svg" alt="KANDZ Communications" style={{ width: '100%', maxWidth: 180, height: 'auto', display: 'block' }} />
         </div>
 
         {/* Logged-in user info */}

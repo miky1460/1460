@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 200" width="380" height="200">
+  <!-- Background: transparent -->
+
+  <!-- KANDZ main text -->
+  <text x="4" y="158" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="128" fill="#111111" letter-spacing="-4">KANDZ</text>
+
+  <!-- Wifi signal icon (floating above, between K and A area) -->
+  <!-- Center dot -->
+  <circle cx="148" cy="82" r="5" fill="#16a34a"/>
+  <!-- Arc 1 (small) -->
+  <path d="M 136,70 A 13,13 0 0 1 161,70" fill="none" stroke="#16a34a" stroke-width="4" stroke-linecap="round"/>
+  <!-- Arc 2 (medium) -->
+  <path d="M 126,58 A 23,23 0 0 1 170,58" fill="none" stroke="#16a34a" stroke-width="4" stroke-linecap="round"/>
+  <!-- Arc 3 (large) -->
+  <path d="M 116,46 A 33,33 0 0 1 180,46" fill="none" stroke="#16a34a" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Green top-right accent bars -->
+  <rect x="310" y="8" width="60" height="8" rx="2" fill="#16a34a"/>
+  <rect x="330" y="22" width="40" height="8" rx="2" fill="#16a34a"/>
+
+  <!-- COMMUNICATIONS vertical text (right side, rotated) -->
+  <text transform="translate(375,175) rotate(-90)" font-family="Arial, sans-serif" font-weight="700" font-size="13" fill="#16a34a" letter-spacing="3.5">COMMUNICATIONS</text>
+
+  <!-- Green zigzag/lightning bottom accent -->
+  <polyline points="210,185 235,165 258,185 285,162 310,180" fill="none" stroke="#16a34a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
