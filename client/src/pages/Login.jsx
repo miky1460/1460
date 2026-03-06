@@ -25,7 +25,7 @@ export default function Login() {
     <div className="login-page">
       <div className="login-card">
         <div className="login-logo">
-          <img src="/kandz-logo.svg" alt="KANDZ Communications" style={{ width: '100%', maxWidth: 400, height: 'auto', margin: '0 auto 8px', display: 'block' }} />
+          <span style={{ fontSize: 48, fontWeight: 900, color: '#4cba6f', letterSpacing: 4, display: 'block', textAlign: 'center' }}>KANDZ</span>
           <p>Sign in to your account</p>
         </div>
 

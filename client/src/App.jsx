@@ -39,7 +39,7 @@ function Layout({ children, title }) {
 
       <aside className={`sidebar${sidebarOpen ? ' open' : ''}`}>
         <div className="sidebar-logo" style={{ padding: '14px 12px' }}>
-          <img src="/kandz-logo-white.svg" alt="KANDZ Communications" style={{ width: '100%', maxWidth: 180, height: 'auto', display: 'block' }} />
+          <span style={{ fontSize: 28, fontWeight: 900, color: '#4cba6f', letterSpacing: 2 }}>KANDZ</span>
         </div>
 
         {/* Logged-in user info */}
