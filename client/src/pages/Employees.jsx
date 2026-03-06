@@ -7,6 +7,11 @@ const EMPTY_FORM = {
   department: '', position: '', salary: '', join_date: ''
 };
 
+const DEPT_COLORS = {
+  'HR': '#7c3aed', 'Finance': '#0891b2', 'Social Media': '#d97706',
+  'Operations': '#16a34a', 'Development': '#2563eb', 'Legal': '#dc2626'
+};
+
 export default function Employees() {
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,6 +23,8 @@ export default function Employees() {
   const [form, setForm] = useState(EMPTY_FORM);
   const [message, setMessage] = useState(null);
   const [viewEmp, setViewEmp] = useState(null);
+  const [tab, setTab] = useState('directory');
+  const [expandedDept, setExpandedDept] = useState(null);
 
   const load = () => {
     setLoading(true);
@@ -69,19 +76,103 @@ export default function Employees() {
     <span className={`badge ${s === 'active' ? 'badge-success' : 'badge-gray'}`}>{s}</span>
   );
 
+  const deptGroups = DEPARTMENTS.map(dept => ({
+    name: dept,
+    color: DEPT_COLORS[dept] || '#6b7280',
+    members: employees.filter(e => e.department === dept),
+  }));
+
   return (
     <div>
       {message && <div className={`alert alert-${message.type}`}>{message.text}</div>}
 
       <div className="page-header">
         <div>
-          <h3>Employee Directory</h3>
+          <h3>{tab === 'directory' ? 'Employee Directory' : 'Departments'}</h3>
           <p>{employees.length} employee(s) found</p>
         </div>
-        <button className="btn btn-primary" onClick={openAdd}>+ Add Employee</button>
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+          <div style={{ display: 'flex', background: '#f3f4f6', borderRadius: 8, padding: 3, gap: 2 }}>
+            <button
+              className="btn btn-sm"
+              onClick={() => setTab('directory')}
+              style={{ background: tab === 'directory' ? '#fff' : 'transparent', color: tab === 'directory' ? '#111' : '#6b7280', boxShadow: tab === 'directory' ? '0 1px 4px rgba(0,0,0,0.1)' : 'none', border: 'none', fontWeight: 600 }}
+            >Directory</button>
+            <button
+              className="btn btn-sm"
+              onClick={() => setTab('departments')}
+              style={{ background: tab === 'departments' ? '#fff' : 'transparent', color: tab === 'departments' ? '#111' : '#6b7280', boxShadow: tab === 'departments' ? '0 1px 4px rgba(0,0,0,0.1)' : 'none', border: 'none', fontWeight: 600 }}
+            >Departments</button>
+          </div>
+          <button className="btn btn-primary" onClick={openAdd}>+ Add Employee</button>
+        </div>
       </div>
 
-      <div className="card">
+      {tab === 'departments' && (
+        <div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 16, marginBottom: 24 }}>
+            {deptGroups.map(dept => (
+              <div
+                key={dept.name}
+                className="card"
+                onClick={() => setExpandedDept(expandedDept === dept.name ? null : dept.name)}
+                style={{ cursor: 'pointer', borderTop: `4px solid ${dept.color}`, padding: '18px 20px' }}
+              >
+                <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 4 }}>{dept.name}</div>
+                <div style={{ fontSize: 28, fontWeight: 900, color: dept.color }}>{dept.members.length}</div>
+                <div style={{ fontSize: 12, color: '#6b7280', marginTop: 2 }}>
+                  {dept.members.filter(e => e.status === 'active').length} active
+                </div>
+                <div style={{ fontSize: 12, color: dept.color, marginTop: 8, fontWeight: 600 }}>
+                  {expandedDept === dept.name ? 'Hide ▲' : 'View ▼'}
+                </div>
+              </div>
+            ))}
+          </div>
+          {expandedDept && (() => {
+            const dept = deptGroups.find(d => d.name === expandedDept);
+            return (
+              <div className="card">
+                <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 14, borderBottom: `2px solid ${dept.color}`, paddingBottom: 8 }}>
+                  {dept.name} — {dept.members.length} Employee(s)
+                </div>
+                {dept.members.length === 0 ? (
+                  <div className="empty-state"><div className="empty-icon">👥</div><h4>No employees in this department</h4></div>
+                ) : (
+                  <div className="table-container">
+                    <table>
+                      <thead>
+                        <tr><th>ID</th><th>Name</th><th>Position</th><th>Status</th><th>Actions</th></tr>
+                      </thead>
+                      <tbody>
+                        {dept.members.map(emp => (
+                          <tr key={emp.id}>
+                            <td><strong>{emp.employee_id}</strong></td>
+                            <td>
+                              <div style={{ fontWeight: 500 }}>{emp.first_name} {emp.last_name}</div>
+                              <div style={{ fontSize: 12, color: '#6b7280' }}>{emp.email}</div>
+                            </td>
+                            <td>{emp.position}</td>
+                            <td>{statusBadge(emp.status)}</td>
+                            <td>
+                              <div style={{ display: 'flex', gap: 6 }}>
+                                <button className="btn btn-ghost btn-sm" onClick={() => setViewEmp(emp)}>View</button>
+                                <button className="btn btn-info btn-sm" onClick={() => openEdit(emp)}>Edit</button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
+            );
+          })()}
+        </div>
+      )}
+
+      {tab === 'directory' && <div className="card">
         <div className="search-bar">
           <input
             placeholder="Search by name, ID, or email..."
