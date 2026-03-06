@@ -1,11 +1,11 @@
 {
-  "name": "HR Management Portal",
-  "short_name": "HR Portal",
-  "description": "Company HR Management System",
+  "name": "KANDZ Communications HR",
+  "short_name": "KANDZ HR",
+  "description": "KANDZ Communications HR Management System",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1e1b4b",
-  "theme_color": "#4f46e5",
+  "background_color": "#111827",
+  "theme_color": "#16a34a",
   "orientation": "portrait-primary",
   "icons": [
     {

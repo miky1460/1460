@@ -84,11 +84,11 @@ if (empCount.count === 0) {
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
   const employees = [
-    ['emp-001', 'EMP001', 'Alice', 'Johnson', 'alice@company.com', '555-0101', 'Engineering', 'Senior Developer', 95000, '2022-01-15', 'active'],
-    ['emp-002', 'EMP002', 'Bob', 'Smith', 'bob@company.com', '555-0102', 'Engineering', 'Developer', 75000, '2022-06-01', 'active'],
-    ['emp-003', 'EMP003', 'Carol', 'Williams', 'carol@company.com', '555-0103', 'HR', 'HR Manager', 80000, '2021-03-10', 'active'],
-    ['emp-004', 'EMP004', 'David', 'Brown', 'david@company.com', '555-0104', 'Finance', 'Financial Analyst', 70000, '2023-02-20', 'active'],
-    ['emp-005', 'EMP005', 'Eve', 'Davis', 'eve@company.com', '555-0105', 'Marketing', 'Marketing Manager', 85000, '2021-11-05', 'active'],
+    ['emp-001', 'EMP001', 'Alice', 'Johnson', 'alice@kandz.io', '555-0101', 'Development', 'Senior Developer', 95000, '2022-01-15', 'active'],
+    ['emp-002', 'EMP002', 'Bob', 'Smith', 'bob@kandz.io', '555-0102', 'Development', 'Developer', 75000, '2022-06-01', 'active'],
+    ['emp-003', 'EMP003', 'Carol', 'Williams', 'carol@kandz.io', '555-0103', 'HR', 'HR Manager', 80000, '2021-03-10', 'active'],
+    ['emp-004', 'EMP004', 'David', 'Brown', 'david@kandz.io', '555-0104', 'Finance', 'Financial Analyst', 70000, '2023-02-20', 'active'],
+    ['emp-005', 'EMP005', 'Eve', 'Davis', 'eve@kandz.io', '555-0105', 'Social Media', 'Social Media Manager', 85000, '2021-11-05', 'active'],
   ];
   employees.forEach(emp => insertEmp.run(...emp));
 
@@ -134,12 +134,12 @@ const userCount = db.prepare('SELECT COUNT(*) as count FROM users').get();
 if (userCount.count === 0) {
   const insertUser = db.prepare(`INSERT INTO users (id, name, email, password, role, employee_id) VALUES (?, ?, ?, ?, ?, ?)`);
   const h = (pw) => bcrypt.hashSync(pw, 10);
-  insertUser.run('user-admin',  'Admin',         'admin@company.com', h('Admin@123'),  'admin',    null);
-  insertUser.run('user-hr',     'Carol Williams', 'carol@company.com', h('HR@1234'),   'hr',       'emp-003');
-  insertUser.run('user-emp001', 'Alice Johnson',  'alice@company.com', h('Alice@123'), 'employee', 'emp-001');
-  insertUser.run('user-emp002', 'Bob Smith',      'bob@company.com',   h('Bob@1234'),  'employee', 'emp-002');
-  insertUser.run('user-emp004', 'David Brown',    'david@company.com', h('David@123'), 'employee', 'emp-004');
-  insertUser.run('user-emp005', 'Eve Davis',      'eve@company.com',   h('Eve@1234'),  'employee', 'emp-005');
+  insertUser.run('user-admin',  'Admin',         'admin@kandz.io', h('Admin@123'),  'admin',    null);
+  insertUser.run('user-hr',     'Carol Williams', 'carol@kandz.io', h('HR@1234'),   'hr',       'emp-003');
+  insertUser.run('user-emp001', 'Alice Johnson',  'alice@kandz.io', h('Alice@123'), 'employee', 'emp-001');
+  insertUser.run('user-emp002', 'Bob Smith',      'bob@kandz.io',   h('Bob@1234'),  'employee', 'emp-002');
+  insertUser.run('user-emp004', 'David Brown',    'david@kandz.io', h('David@123'), 'employee', 'emp-004');
+  insertUser.run('user-emp005', 'Eve Davis',      'eve@kandz.io',   h('Eve@1234'),  'employee', 'emp-005');
 }
 
 module.exports = db;

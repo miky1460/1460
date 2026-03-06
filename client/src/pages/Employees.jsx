@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const DEPARTMENTS = ['Engineering', 'HR', 'Finance', 'Marketing', 'Operations', 'Sales', 'Design', 'Legal'];
+const DEPARTMENTS = ['HR', 'Finance', 'Social Media', 'Operations', 'Development', 'Legal'];
 const EMPTY_FORM = {
   employee_id: '', first_name: '', last_name: '', email: '', phone: '',
   department: '', position: '', salary: '', join_date: ''

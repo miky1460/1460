@@ -1,5 +1,6 @@
 <svg xmlns='http://www.w3.org/2000/svg' width='192' height='192' viewBox='0 0 192 192'>
-  <rect width='192' height='192' rx='40' fill='#4f46e5'/>
-  <text x='96' y='130' font-size='100' text-anchor='middle' font-family='Arial'>👥</text>
-  <text x='96' y='175' font-size='22' text-anchor='middle' font-family='Arial,sans-serif' fill='white' font-weight='bold'>HR</text>
+  <rect width='192' height='192' rx='40' fill='#111827'/>
+  <rect x='16' y='16' width='160' height='160' rx='28' fill='#16a34a'/>
+  <text x='96' y='118' font-size='72' text-anchor='middle' font-family='Arial Black,sans-serif' fill='white' font-weight='900' letter-spacing='-4'>KZ</text>
+  <text x='96' y='152' font-size='18' text-anchor='middle' font-family='Arial,sans-serif' fill='#d1fae5' font-weight='600' letter-spacing='2'>KANDZ</text>
 </svg>

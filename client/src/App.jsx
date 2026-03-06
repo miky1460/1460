@@ -39,16 +39,16 @@ function Layout({ children, title }) {
 
       <aside className={`sidebar${sidebarOpen ? ' open' : ''}`}>
         <div className="sidebar-logo">
-          <span className="logo-icon">👥</span>
+          <span className="logo-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, background: '#16a34a', borderRadius: 8, fontFamily: 'Arial Black, sans-serif', fontWeight: 900, fontSize: 14, color: 'white', letterSpacing: '-1px', flexShrink: 0 }}>KZ</span>
           <div>
-            <h1>HR Portal</h1>
-            <span>Management System</span>
+            <h1>KANDZ</h1>
+            <span>Communications</span>
           </div>
         </div>
 
         {/* Logged-in user info */}
-        <div style={{ padding: '12px 16px', borderBottom: '1px solid #312e81', marginBottom: 8 }}>
-          <div style={{ fontSize: 13, fontWeight: 600, color: '#e0e7ff' }}>{user?.name}</div>
+        <div style={{ padding: '12px 16px', borderBottom: '1px solid #1f2937', marginBottom: 8 }}>
+          <div style={{ fontSize: 13, fontWeight: 600, color: '#d1fae5' }}>{user?.name}</div>
           <div style={{ fontSize: 11, color: badge.color, fontWeight: 600, background: 'rgba(255,255,255,0.1)', display: 'inline-block', padding: '2px 8px', borderRadius: 20, marginTop: 4 }}>{badge.label}</div>
         </div>
 
@@ -65,7 +65,7 @@ function Layout({ children, title }) {
         </nav>
 
         <div className="sidebar-footer">
-          <div style={{ fontWeight: 600, color: '#c7d2fe', marginBottom: 8 }}>HR Management v2.0</div>
+          <div style={{ fontWeight: 600, color: '#86efac', marginBottom: 8 }}>KANDZ Communications v2.0</div>
           <button onClick={logout} className="btn" style={{ width: '100%', background: 'rgba(239,68,68,0.2)', color: '#fca5a5', border: '1px solid rgba(239,68,68,0.3)' }}>
             🚪 Sign Out
           </button>

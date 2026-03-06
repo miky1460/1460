@@ -25,8 +25,10 @@ export default function Login() {
     <div className="login-page">
       <div className="login-card">
         <div className="login-logo">
-          <span style={{ fontSize: 48 }}>👥</span>
-          <h1>HR Portal</h1>
+          <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 72, height: 72, background: '#111827', borderRadius: 16, margin: '0 auto 4px' }}>
+            <span style={{ fontFamily: 'Arial Black, sans-serif', fontWeight: 900, fontSize: 28, color: '#16a34a', letterSpacing: '-1px' }}>KZ</span>
+          </div>
+          <h1>KANDZ Communications</h1>
           <p>Sign in to your account</p>
         </div>
 
@@ -64,9 +66,9 @@ export default function Login() {
         <div className="login-hint">
           <p><strong>Default Accounts:</strong></p>
           <div className="hint-table">
-            <div><span className="badge badge-admin">Admin</span> admin@company.com / Admin@123</div>
-            <div><span className="badge badge-hr">HR</span> carol@company.com / HR@1234</div>
-            <div><span className="badge badge-emp">Employee</span> alice@company.com / Alice@123</div>
+            <div><span className="badge badge-admin">Admin</span> admin@kandz.io / Admin@123</div>
+            <div><span className="badge badge-hr">HR</span> carol@kandz.io / HR@1234</div>
+            <div><span className="badge badge-emp">Employee</span> alice@kandz.io / Alice@123</div>
           </div>
         </div>
       </div>
