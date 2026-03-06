@@ -234,7 +234,7 @@ export default function Employees() {
             </div>
           )
         }
-      </div>
+      </div>}
 
       {/* Add/Edit Modal */}
       {showModal && (
