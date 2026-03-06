@@ -39,7 +39,7 @@ function Layout({ children, title }) {
 
       <aside className={`sidebar${sidebarOpen ? ' open' : ''}`}>
         <div className="sidebar-logo" style={{ padding: '14px 12px' }}>
-          <span style={{ fontSize: 28, fontWeight: 900, color: '#4cba6f', letterSpacing: 2 }}>KANDZ</span>
+          <span style={{ fontSize: 24, fontWeight: 900, color: '#000', background: '#4cba6f', padding: '6px 18px', borderRadius: 4, letterSpacing: 2, display: 'inline-block' }}>KANDZ</span>
         </div>
 
         {/* Logged-in user info */}

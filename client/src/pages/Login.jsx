@@ -25,7 +25,7 @@ export default function Login() {
     <div className="login-page">
       <div className="login-card">
         <div className="login-logo">
-          <span style={{ fontSize: 48, fontWeight: 900, color: '#4cba6f', letterSpacing: 4, display: 'block', textAlign: 'center' }}>KANDZ</span>
+          <span style={{ fontSize: 42, fontWeight: 900, color: '#000', background: '#4cba6f', padding: '8px 24px', borderRadius: 4, letterSpacing: 4, display: 'inline-block' }}>KANDZ</span>
           <p>Sign in to your account</p>
         </div>
 
