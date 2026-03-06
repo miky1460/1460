@@ -1,0 +1,9 @@
+node_modules/
+server/node_modules/
+client/node_modules/
+server/hr.db
+server/hr.db-shm
+server/hr.db-wal
+client/dist/
+.env
+*.log
