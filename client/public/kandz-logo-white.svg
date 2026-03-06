@@ -1,29 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 148">
-  <!-- Green stepped icon — corner bracket + arm + diagonal + foot -->
-  <!-- Top horizontal bar (corner of bracket) -->
-  <rect x="0" y="0" width="30" height="10" fill="#4cba6f"/>
-  <!-- Left vertical bar -->
-  <rect x="0" y="0" width="12" height="90" fill="#4cba6f"/>
-  <!-- Middle horizontal arm -->
-  <rect x="12" y="78" width="52" height="12" fill="#4cba6f"/>
-  <!-- Diagonal stroke going down-right -->
-  <polygon points="52,78 64,78 98,138 86,138" fill="#4cba6f"/>
-  <!-- Bottom foot -->
-  <rect x="84" y="130" width="20" height="8" fill="#4cba6f"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 160">
+  <!-- Main green vertical block (KANDZ sits on this) -->
+  <rect x="0" y="0" width="230" height="105" fill="#4cba6f"/>
 
-  <!-- KANDZ text — white, visible on dark sidebar -->
-  <text x="108" y="138"
+  <!-- Horizontal green bar (Communications sits on this) -->
+  <rect x="0" y="105" width="520" height="40" fill="#4cba6f"/>
+
+  <!-- Diagonal step connector -->
+  <polygon points="230,80 260,80 260,105 230,105" fill="#4cba6f"/>
+
+  <!-- KANDZ text on the green vertical block -->
+  <text x="115" y="78"
     font-family="Impact, 'Arial Narrow', 'Arial Black', sans-serif"
     font-weight="900"
-    font-size="118"
+    font-size="72"
     fill="white"
-    letter-spacing="1">KANDZ</text>
+    text-anchor="middle"
+    letter-spacing="2">KANDZ</text>
 
-  <!-- Wifi icon -->
-  <circle cx="170" cy="46" r="6" fill="#4cba6f"/>
-  <path d="M 153,34 A 18,18 0 0 1 187,34" fill="none" stroke="#4cba6f" stroke-width="7" stroke-linecap="round"/>
-  <path d="M 136,20 A 35,35 0 0 1 204,20" fill="none" stroke="#4cba6f" stroke-width="7" stroke-linecap="round"/>
+  <!-- WiFi icon on the center horizontal line -->
+  <circle cx="258" cy="97" r="5" fill="white"/>
+  <path d="M 244,87 A 14,14 0 0 1 272,87" fill="none" stroke="white" stroke-width="5" stroke-linecap="round"/>
+  <path d="M 231,75 A 28,28 0 0 1 285,75" fill="none" stroke="white" stroke-width="5" stroke-linecap="round"/>
 
-  <!-- Small green rectangle — Z accent -->
-  <rect x="472" y="74" width="28" height="18" fill="#4cba6f"/>
+  <!-- Communications text on horizontal bar -->
+  <text x="390" y="132"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="22"
+    fill="white"
+    text-anchor="middle"
+    letter-spacing="1">Communications</text>
 </svg>
