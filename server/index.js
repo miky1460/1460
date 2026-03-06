@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const { authenticate, authorize } = require('./middleware/auth');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -8,12 +9,15 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Routes
-app.use('/api/employees', require('./routes/employees'));
-app.use('/api/leaves', require('./routes/leaves'));
-app.use('/api/attendance', require('./routes/attendance'));
-app.use('/api/payroll', require('./routes/payroll'));
-app.use('/api/reports', require('./routes/reports'));
+// Public: auth routes (login, etc.)
+app.use('/api/auth', require('./routes/auth'));
+
+// Protected routes - all require login
+app.use('/api/employees', authenticate, require('./routes/employees'));
+app.use('/api/leaves',    authenticate, require('./routes/leaves'));
+app.use('/api/attendance',authenticate, require('./routes/attendance'));
+app.use('/api/payroll',   authenticate, require('./routes/payroll'));
+app.use('/api/reports',   authenticate, require('./routes/reports'));
 
 // Serve React frontend in production
 if (process.env.NODE_ENV === 'production') {
