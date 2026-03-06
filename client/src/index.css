@@ -504,9 +504,120 @@ input:focus, select:focus, textarea:focus {
 .alert-success { background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
 .alert-error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
 
+/* Mobile bottom nav (shown on phones) */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: #1e1b4b;
+  border-top: 1px solid #312e81;
+  z-index: 200;
+  padding: 6px 0 max(6px, env(safe-area-inset-bottom));
+}
+
+.mobile-nav-inner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 10px;
+  text-decoration: none;
+  color: #a5b4fc;
+  font-size: 10px;
+  font-weight: 500;
+  border-radius: 8px;
+  min-width: 52px;
+  transition: all 0.15s;
+}
+
+.mobile-nav-item .nav-emoji { font-size: 22px; }
+.mobile-nav-item.active { color: white; background: rgba(99,102,241,0.3); }
+.mobile-nav-item:hover { color: white; }
+
+/* Mobile topbar hamburger */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #374151;
+  padding: 4px;
+}
+
+/* Sidebar overlay on mobile */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 99;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
-  .sidebar { transform: translateX(-100%); }
-  .main-content { margin-left: 0; }
-  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 100;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-overlay.open {
+    display: block;
+  }
+
+  .hamburger { display: block; }
+
+  .main-content {
+    margin-left: 0;
+    padding-bottom: 70px; /* space for bottom nav */
+  }
+
+  .page-content { padding: 16px 12px; }
+
+  .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+  .stat-card { padding: 14px; }
+  .stat-card .stat-value { font-size: 22px; }
+
+  .mobile-nav { display: block; }
+
+  /* Hide sidebar nav links on mobile (use bottom nav instead) */
+  .topbar h2 { font-size: 16px; }
+
+  table { font-size: 12px; }
+  th, td { padding: 8px 10px; }
+
+  .form-grid { grid-template-columns: 1fr; }
+
+  .modal { margin: 10px; max-height: 95vh; }
+  .modal-body { padding: 16px; }
+
+  .page-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .page-header .btn { align-self: stretch; justify-content: center; }
+
+  .search-bar { flex-direction: column; }
+  .search-bar input, .search-bar select { max-width: 100%; }
+
+  /* Stack dashboard two-column grid */
+  div[style*="grid-template-columns: 1fr 1fr"] {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .tabs { overflow-x: auto; white-space: nowrap; }
+
+  /* Bigger touch targets */
+  .btn { min-height: 40px; }
+  input, select, textarea { min-height: 42px; font-size: 16px; } /* 16px prevents iOS zoom */
 }
