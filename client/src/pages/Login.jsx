@@ -61,11 +61,16 @@ export default function Login() {
         </form>
 
         <div className="login-hint">
-          <p><strong>Default Accounts:</strong></p>
-          <div className="hint-table">
+          <p><strong>Demo Accounts:</strong></p>
+          <div className="hint-table" style={{ fontSize: 12 }}>
+            <div><span className="badge badge-admin">CEO</span> ceo@kandz.io / CEO@1234</div>
             <div><span className="badge badge-admin">Admin</span> admin@kandz.io / Admin@123</div>
-            <div><span className="badge badge-hr">HR</span> carol@kandz.io / HR@1234</div>
-            <div><span className="badge badge-emp">Employee</span> alice@kandz.io / Alice@123</div>
+            <div><span className="badge badge-hr">HR Manager</span> carol@kandz.io / HR@1234</div>
+            <div><span className="badge badge-info">Ops Manager</span> omar@kandz.io / Ops@1234</div>
+            <div><span className="badge badge-success">Team Lead</span> tariq@kandz.io / TL@1234</div>
+            <div><span className="badge badge-success">Agent</span> sara@kandz.io / Sara@123</div>
+            <div><span className="badge badge-warning">Finance</span> david@kandz.io / Finance@123</div>
+            <div><span className="badge badge-emp">Office Mgr</span> eve@kandz.io / Office@123</div>
           </div>
         </div>
       </div>

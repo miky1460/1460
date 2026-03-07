@@ -46,7 +46,8 @@ router.get('/users', authenticate, authorize('admin'), (req, res) => {
 router.post('/users', authenticate, authorize('admin'), (req, res) => {
   const { name, email, password, role, employee_id } = req.body;
   if (!name || !email || !password || !role) return res.status(400).json({ error: 'Missing required fields' });
-  if (!['admin', 'hr', 'employee'].includes(role)) return res.status(400).json({ error: 'Invalid role' });
+  const VALID_ROLES = ['ceo', 'admin', 'hr', 'ops_manager', 'team_lead', 'agent', 'office_manager', 'finance', 'employee'];
+  if (!VALID_ROLES.includes(role)) return res.status(400).json({ error: 'Invalid role' });
 
   const exists = db.prepare('SELECT id FROM users WHERE email = ?').get(email.toLowerCase().trim());
   if (exists) return res.status(409).json({ error: 'Email already in use' });

@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const { authenticate, authorize } = require('./middleware/auth');
+const { authenticate } = require('./middleware/auth');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -9,15 +9,19 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Public: auth routes (login, etc.)
+// Public: auth routes
 app.use('/api/auth', require('./routes/auth'));
 
-// Protected routes - all require login
-app.use('/api/employees', authenticate, require('./routes/employees'));
-app.use('/api/leaves',    authenticate, require('./routes/leaves'));
-app.use('/api/attendance',authenticate, require('./routes/attendance'));
-app.use('/api/payroll',   authenticate, require('./routes/payroll'));
-app.use('/api/reports',   authenticate, require('./routes/reports'));
+// Protected routes
+app.use('/api/employees',    authenticate, require('./routes/employees'));
+app.use('/api/leaves',       authenticate, require('./routes/leaves'));
+app.use('/api/attendance',   authenticate, require('./routes/attendance'));
+app.use('/api/payroll',      authenticate, require('./routes/payroll'));
+app.use('/api/reports',      authenticate, require('./routes/reports'));
+app.use('/api/operations',   authenticate, require('./routes/operations'));
+app.use('/api/finance',      authenticate, require('./routes/finance'));
+app.use('/api/office',       authenticate, require('./routes/office'));
+app.use('/api/announcements',authenticate, require('./routes/announcements'));
 
 // Serve React frontend in production
 if (process.env.NODE_ENV === 'production') {
@@ -28,5 +32,5 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.listen(PORT, () => {
-  console.log(`HR App Server running on http://localhost:${PORT}`);
+  console.log(`KANDZ App Server running on http://localhost:${PORT}`);
 });

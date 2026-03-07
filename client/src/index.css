@@ -433,6 +433,15 @@ input:focus, select:focus, textarea:focus {
 .tab.active { color: var(--primary); border-bottom-color: var(--primary); }
 .tab:hover:not(.active) { color: #374151; }
 
+/* Tab bar (alternative pill style) */
+.tab-bar { display: flex; gap: 6px; flex-wrap: wrap; }
+.tab-btn {
+  padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500;
+  color: #6b7280; background: #f3f4f6; border: none; cursor: pointer; transition: all 0.15s;
+}
+.tab-btn.active { background: var(--primary); color: #fff; }
+.tab-btn:hover:not(.active) { background: #e5e7eb; color: #374151; }
+
 /* Charts (simple bar chart using CSS) */
 .chart-bar-container {
   display: flex;

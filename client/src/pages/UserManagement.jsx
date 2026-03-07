@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 
-const ROLES = ['admin', 'hr', 'employee'];
-const ROLE_COLORS = { admin: '#dc2626', hr: '#7c3aed', employee: '#2563eb' };
+const ROLES = ['ceo', 'admin', 'hr', 'ops_manager', 'team_lead', 'agent', 'office_manager', 'finance', 'employee'];
+const ROLE_COLORS = { ceo: '#dc2626', admin: '#7c3aed', hr: '#2563eb', ops_manager: '#0891b2', team_lead: '#0d9488', agent: '#16a34a', office_manager: '#9333ea', finance: '#ca8a04', employee: '#6b7280' };
 
 export default function UserManagement() {
   const { authFetch } = useAuth();
@@ -51,7 +51,7 @@ export default function UserManagement() {
     if (res.ok) { load(); setSuccess('User deleted'); setTimeout(() => setSuccess(''), 3000); }
   };
 
-  const roleLabel = (role) => ({ admin:'👑 Admin', hr:'🧑‍💼 HR', employee:'👤 Employee' }[role] || role);
+  const roleLabel = (role) => ({ ceo:'👑 CEO', admin:'🔐 Admin', hr:'🧑‍💼 HR', ops_manager:'📊 Ops Manager', team_lead:'🎯 Team Lead', agent:'📞 Agent', finance:'💼 Finance', office_manager:'🏢 Office Mgr', employee:'👤 Employee' }[role] || role);
 
   return (
     <div>
@@ -110,8 +110,14 @@ export default function UserManagement() {
                 <div className="form-group">
                   <label>Role *</label>
                   <select value={form.role} onChange={e=>setForm({...form,role:e.target.value})}>
-                    <option value="admin">👑 Admin (Full Access)</option>
+                    <option value="ceo">👑 CEO (All Access)</option>
+                    <option value="admin">🔐 Admin (Full System Access)</option>
                     <option value="hr">🧑‍💼 HR (Manage Staff)</option>
+                    <option value="ops_manager">📊 Operations Manager</option>
+                    <option value="team_lead">🎯 Team Lead</option>
+                    <option value="agent">📞 Agent / SDR</option>
+                    <option value="finance">💼 Finance</option>
+                    <option value="office_manager">🏢 Office Manager</option>
                     <option value="employee">👤 Employee (Own Data Only)</option>
                   </select>
                 </div>

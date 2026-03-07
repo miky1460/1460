@@ -37,7 +37,6 @@ export function AuthProvider({ children }) {
     setUser(null);
   };
 
-  // Attach token to all API calls
   const authFetch = (url, options = {}) => {
     const token = localStorage.getItem('hr_token');
     return fetch(`${API}${url}`, {
@@ -50,13 +49,29 @@ export function AuthProvider({ children }) {
     });
   };
 
-  const isAdmin = user?.role === 'admin';
-  const isHR = user?.role === 'hr';
-  const isEmployee = user?.role === 'employee';
-  const canManage = isAdmin || isHR; // can see all employees/attendance/leaves
+  const role = user?.role;
+  const isCEO          = role === 'ceo';
+  const isAdmin        = role === 'admin';
+  const isHR           = role === 'hr';
+  const isOpsManager   = role === 'ops_manager';
+  const isTeamLead     = role === 'team_lead';
+  const isAgent        = role === 'agent';
+  const isOfficeManager= role === 'office_manager';
+  const isFinance      = role === 'finance';
+  const isEmployee     = role === 'employee';
+
+  // Legacy helpers
+  const canManage      = isCEO || isAdmin || isHR;
+  const isManagement   = isCEO || isAdmin;
+  const canViewAll     = isCEO || isAdmin;
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout, authFetch, isAdmin, isHR, isEmployee, canManage }}>
+    <AuthContext.Provider value={{
+      user, loading, login, logout, authFetch,
+      isCEO, isAdmin, isHR, isOpsManager, isTeamLead,
+      isAgent, isOfficeManager, isFinance, isEmployee,
+      canManage, isManagement, canViewAll,
+    }}>
       {children}
     </AuthContext.Provider>
   );
