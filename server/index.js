@@ -9,6 +9,9 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+// Serve uploaded files (CVs, policy attachments)
+app.use('/uploads', authenticate, express.static(path.join(__dirname, 'uploads')));
+
 // Public: auth routes
 app.use('/api/auth', require('./routes/auth'));
 
@@ -22,6 +25,8 @@ app.use('/api/operations',   authenticate, require('./routes/operations'));
 app.use('/api/finance',      authenticate, require('./routes/finance'));
 app.use('/api/office',       authenticate, require('./routes/office'));
 app.use('/api/announcements',authenticate, require('./routes/announcements'));
+app.use('/api/recruitment',  authenticate, require('./routes/recruitment'));
+app.use('/api/policies',     authenticate, require('./routes/policies'));
 
 // Serve React frontend in production
 if (process.env.NODE_ENV === 'production') {

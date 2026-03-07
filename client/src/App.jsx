@@ -13,6 +13,8 @@ import Operations from './pages/Operations';
 import Finance from './pages/Finance';
 import Announcements from './pages/Announcements';
 import OfficeRequests from './pages/OfficeRequests';
+import Recruitment from './pages/Recruitment';
+import Policies from './pages/Policies';
 
 const ROLE_BADGE = {
   ceo:          { label: '👑 CEO',            color: '#dc2626' },
@@ -42,6 +44,8 @@ function Layout({ children, title }) {
     { path: '/leaves',        label: 'Leave Management',icon: '🏖️', show: !isOpsManager && !isFinance && !isOfficeManager },
     { path: '/payroll',       label: 'Payroll',         icon: '💰', show: isCEO || isAdmin || isHR || isFinance },
     { path: '/reports',       label: 'HR Reports',      icon: '📈', show: canManage },
+    { path: '/recruitment',   label: 'Recruitment',     icon: '🎯', show: isCEO || isAdmin || isHR },
+    { path: '/policies',      label: 'Policy Playbook', icon: '📋', show: true },
     // Operations
     { path: '/operations',    label: 'Operations',      icon: '📞', show: isCEO || isAdmin || isOps },
     // Finance / Bookkeeping (dept heads submit their own entries)
@@ -58,7 +62,7 @@ function Layout({ children, title }) {
   const closeSidebar = () => setSidebarOpen(false);
 
   // Group nav items for display
-  const coreItems = navItems.filter(i => ['/', '/employees', '/attendance', '/leaves', '/payroll', '/reports'].includes(i.path));
+  const coreItems = navItems.filter(i => ['/', '/employees', '/attendance', '/leaves', '/payroll', '/reports', '/recruitment', '/policies'].includes(i.path));
   const opsItems  = navItems.filter(i => ['/operations'].includes(i.path));
   const bizItems  = navItems.filter(i => ['/finance', '/office', '/announcements'].includes(i.path));
   const adminItems= navItems.filter(i => ['/users'].includes(i.path));
@@ -155,6 +159,10 @@ function ProtectedApp() {
       {canManage && (
         <Route path="/reports" element={<Layout title="Reports"><Reports /></Layout>} />
       )}
+      {(isCEO||isAdmin||isHR) && (
+        <Route path="/recruitment" element={<Layout title="Recruitment Pipeline"><Recruitment /></Layout>} />
+      )}
+      <Route path="/policies" element={<Layout title="Policy Playbook"><Policies /></Layout>} />
       {(isCEO||isAdmin||isOps) && (
         <Route path="/operations" element={<Layout title="Operations"><Operations /></Layout>} />
       )}

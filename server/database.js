@@ -156,6 +156,48 @@ db.exec(`
     FOREIGN KEY (created_by) REFERENCES employees(id)
   );
 
+  CREATE TABLE IF NOT EXISTS candidates (
+    id TEXT PRIMARY KEY,
+    full_name TEXT NOT NULL,
+    email TEXT,
+    phone TEXT,
+    position_applied TEXT NOT NULL,
+    department TEXT NOT NULL,
+    source TEXT DEFAULT 'direct',
+    status TEXT DEFAULT 'applied',
+    cv_filename TEXT,
+    cv_original_name TEXT,
+    remarks TEXT,
+    interview_date TEXT,
+    interview_notes TEXT,
+    offered_salary REAL,
+    joining_date TEXT,
+    rejected_reason TEXT,
+    created_by TEXT NOT NULL,
+    updated_by TEXT,
+    created_at TEXT DEFAULT (datetime('now')),
+    updated_at TEXT DEFAULT (datetime('now')),
+    FOREIGN KEY (created_by) REFERENCES employees(id)
+  );
+
+  CREATE TABLE IF NOT EXISTS policies (
+    id TEXT PRIMARY KEY,
+    title TEXT NOT NULL,
+    category TEXT NOT NULL,
+    description TEXT,
+    content TEXT,
+    file_filename TEXT,
+    file_original_name TEXT,
+    version TEXT DEFAULT '1.0',
+    effective_date TEXT,
+    status TEXT DEFAULT 'active',
+    created_by TEXT NOT NULL,
+    updated_by TEXT,
+    created_at TEXT DEFAULT (datetime('now')),
+    updated_at TEXT DEFAULT (datetime('now')),
+    FOREIGN KEY (created_by) REFERENCES employees(id)
+  );
+
 `);// Seed employees
 const empCount = db.prepare('SELECT COUNT(*) as count FROM employees').get();
 if (empCount.count === 0) {
@@ -283,6 +325,44 @@ if (empCount.count === 0) {
   insertFin.run('fin-014', 'expense', 'office_supplies','Monthly Stationery',           8500,  fm, 'Admin',      'approved', 'Pens, paper, folders for all depts',          'emp-005');
   insertFin.run('fin-015', 'expense', 'maintenance',   'AC Service Charges',           15000, fm, 'Admin',      'pending',  'AC repair and servicing for Room 3 and 4',    'emp-005');
   insertFin.run('fin-016', 'expense', 'utilities',     'Internet & Electricity March',  55000, fm, 'Admin',      'paid',     'Monthly utility bills',                       'emp-005');
+
+  // Seed HR policies
+  const insertPolicy = db.prepare(`INSERT INTO policies (id, title, category, description, content, version, effective_date, status, created_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+  insertPolicy.run('pol-001', 'Attendance & Punctuality Policy', 'Attendance',
+    'Rules governing employee attendance, timings, and punctuality.',
+    `1. Office hours are 9:00 AM to 6:00 PM, Monday to Saturday.\n2. Employees must check in by 9:15 AM. Late arrivals beyond 9:15 AM will be marked as half-day.\n3. Three late arrivals in a month will result in one day salary deduction.\n4. Unplanned absences must be notified to HR before 9:30 AM via WhatsApp or call.\n5. Attendance records are reviewed monthly and impact performance appraisals.`,
+    '1.0', '2026-01-01', 'active', 'emp-003');
+  insertPolicy.run('pol-002', 'Leave Policy', 'Leave',
+    'Types of leaves, entitlements, and application procedures.',
+    `1. Annual Leave: 14 days per year. Requires 5 days advance notice for planned leaves.\n2. Sick Leave: 7 days per year. Medical certificate required for more than 2 consecutive days.\n3. Casual Leave: 5 days per year. For personal emergencies with same-day or prior notification.\n4. Leave without Pay (LWP): Granted at management discretion after all paid leaves are exhausted.\n5. Leave applications must be submitted via the HR portal and approved by line manager + HR.\n6. Unused annual leave can be carried forward up to 5 days to next year.`,
+    '1.0', '2026-01-01', 'active', 'emp-003');
+  insertPolicy.run('pol-003', 'Code of Conduct', 'Conduct',
+    'Standards of professional behavior and ethics at KANDZ.',
+    `1. All employees must maintain professional conduct at all times in the office.\n2. Harassment, discrimination, or bullying of any form is strictly prohibited and grounds for immediate termination.\n3. Confidential company and client information must not be shared externally.\n4. Mobile phone usage during work hours should be limited to work-related activities.\n5. Employees must maintain cleanliness and hygiene of their workstations.\n6. Disputes between employees must be reported to HR for resolution. Direct confrontation is prohibited.\n7. Social media posts about the company require prior approval from management.`,
+    '1.0', '2026-01-01', 'active', 'emp-003');
+  insertPolicy.run('pol-004', 'Compensation & Benefits Policy', 'Compensation',
+    'Salary structure, bonuses, increments, and benefits.',
+    `1. Salaries are processed on the 28th of every month.\n2. Performance bonuses are awarded quarterly based on KPI achievement (target: 90%+).\n3. Annual increments are reviewed every January based on performance appraisal scores.\n4. Eid bonus (one month salary) is paid before each Eid holiday.\n5. Employees are eligible for health insurance after 6 months of service.\n6. Travel allowance is provided for client visits and official travel as per grade.\n7. All salary deductions (late marks, LWP, etc.) are communicated to the employee 5 days before payment.`,
+    '1.0', '2026-01-01', 'active', 'emp-003');
+  insertPolicy.run('pol-005', 'Recruitment & Hiring Policy', 'Recruitment',
+    'Hiring process, screening criteria, and onboarding standards.',
+    `1. All vacancies must be approved by the department head and HR Manager before posting.\n2. Job postings are done on Rozee.pk, LinkedIn, and through employee referrals.\n3. CV Screening → Phone Screen → Interview → Assessment → Offer → Onboarding.\n4. Hiring decisions require sign-off from HR Manager + Department Head.\n5. Background verification is mandatory for all hires before joining date.\n6. New hires serve a 3-month probation period. Extension up to 6 months at management discretion.\n7. Offer letters must be issued within 48 hours of final selection approval.`,
+    '1.0', '2026-01-01', 'active', 'emp-003');
+  insertPolicy.run('pol-006', 'Data Protection & Confidentiality', 'Compliance',
+    'Policy on handling of company, client, and employee data.',
+    `1. All employee and client data is strictly confidential.\n2. Company systems and data must only be accessed using authorized credentials.\n3. Sharing login credentials with colleagues is strictly prohibited.\n4. Data must not be copied to personal devices or external storage without HR approval.\n5. Upon resignation or termination, all company assets and data access are revoked immediately.\n6. Violations of data protection policy are subject to disciplinary action including termination and legal proceedings.`,
+    '1.0', '2026-01-01', 'active', 'emp-003');
+
+  // Seed candidates
+  const insertCandidate = db.prepare(`INSERT INTO candidates (id, full_name, email, phone, position_applied, department, source, status, remarks, created_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+  insertCandidate.run('cand-001', 'Ahmed Raza',       'ahmed.raza@gmail.com',     '0300-1234567', 'SDR Agent',          'Operations', 'Rozee.pk',  'applied',     'Good communication skills, fresher. Needs assessment.', 'emp-003');
+  insertCandidate.run('cand-002', 'Sana Mirza',       'sana.mirza@gmail.com',     '0311-9876543', 'HR Recruiter',       'HR',         'LinkedIn',  'shortlisted', 'Strong HR background, 2 years experience. Schedule interview.', 'emp-003');
+  insertCandidate.run('cand-003', 'Bilal Chaudhry',   'bilal.ch@yahoo.com',       '0321-4567890', 'Team Lead',          'Operations', 'Referral',  'screened',    'Excellent ops experience. Panel interview pending. Very promising.', 'emp-003');
+  insertCandidate.run('cand-004', 'Nadia Hussain',    'nadia.h@gmail.com',        '0333-2345678', 'Finance Analyst',    'Finance',    'Rozee.pk',  'hired',       'Hired! Strong Excel and financial reporting skills. Joining 15 March.', 'emp-003');
+  insertCandidate.run('cand-005', 'Zubair Khan',      'zubair.khan@hotmail.com',  '0345-6789012', 'Data Entry Agent',   'Operations', 'Walk-in',   'applied',     'Average typing speed, needs to improve. Gave test.', 'emp-003');
+  insertCandidate.run('cand-006', 'Hina Farooq',      'hina.farooq@gmail.com',    '0301-3456789', 'Office Coordinator', 'Admin',      'LinkedIn',  'shortlisted', 'Good admin background. Shortlisted for F2F interview.', 'emp-003');
+  insertCandidate.run('cand-007', 'Kamran Iqbal',     'kamran.iqbal@gmail.com',   '0312-8765432', 'SDR Agent',          'Operations', 'Rozee.pk',  'screened',    'Cleared phone screen. Awaiting panel interview slot.', 'emp-003');
+  insertCandidate.run('cand-008', 'Ayesha Siddiqui',  'ayesha.s@gmail.com',       '0322-5678901', 'HR Officer',         'HR',         'Referral',  'rejected',    'Not a cultural fit. Overqualified for current opening.', 'emp-003');
 }
 
 // Seed users
