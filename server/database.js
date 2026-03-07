@@ -155,9 +155,8 @@ db.exec(`
     created_at TEXT DEFAULT (datetime('now')),
     FOREIGN KEY (created_by) REFERENCES employees(id)
   );
-`);
 
-// Seed employees
+`);// Seed employees
 const empCount = db.prepare('SELECT COUNT(*) as count FROM employees').get();
 if (empCount.count === 0) {
   const insertEmp = db.prepare(`
@@ -267,6 +266,23 @@ if (empCount.count === 0) {
   insertFin.run('fin-003', 'expense', 'rent',       'Office Rent - March 2026',    200000, fm, 'Admin',      'paid',    'Monthly office space rental',          'emp-004');
   insertFin.run('fin-004', 'budget',  'marketing',  'Q1 Marketing Budget',         500000, fm, 'Management', 'approved','Approved Q1 marketing spend',          'emp-006');
   insertFin.run('fin-005', 'invoice', 'other',      'TechCorp Project Invoice',    380000, fm, 'Operations', 'pending', 'Invoice for Alpha Campaign delivery',  'emp-011');
+
+  // HR Department Bookkeeping
+  insertFin.run('fin-006', 'expense', 'recruitment',  'Job Portal Subscription',       12000, fm, 'HR',         'pending',  'Rozee.pk monthly subscription for hiring',     'emp-003');
+  insertFin.run('fin-007', 'expense', 'training',     'Customer Service Training',      35000, fm, 'HR',         'approved', 'External trainer for SDR onboarding batch',    'emp-003');
+  insertFin.run('fin-008', 'expense', 'staff_welfare','Eid Bonus Distribution',        120000, fm, 'HR',         'paid',     'Eid bonus for all staff',                     'emp-003');
+  insertFin.run('fin-009', 'budget',  'hr_events',    'Employee Appreciation Day',      50000, fm, 'HR',         'pending',  'Q1 staff appreciation event budget request',   'emp-003');
+
+  // Operations Department Bookkeeping
+  insertFin.run('fin-010', 'expense', 'tools_software','CRM Software License',          28000, fm, 'Operations', 'approved', 'Monthly CRM tool for agents',                 'emp-007');
+  insertFin.run('fin-011', 'expense', 'project_cost', 'Alpha Campaign Setup Cost',      45000, fm, 'Operations', 'paid',     'Infra and setup for Alpha Campaign launch',    'emp-007');
+  insertFin.run('fin-012', 'expense', 'agent_bonus',  'SDR Performance Bonus Feb',      60000, fm, 'Operations', 'pending',  'Bonus for top 3 agents — February',           'emp-007');
+  insertFin.run('fin-013', 'invoice', 'client_expense','RetailMax Support Invoice',    220000, fm, 'Operations', 'pending',  'Monthly invoice to RetailMax for inbound desk','emp-007');
+
+  // Admin/Office Department Bookkeeping
+  insertFin.run('fin-014', 'expense', 'office_supplies','Monthly Stationery',           8500,  fm, 'Admin',      'approved', 'Pens, paper, folders for all depts',          'emp-005');
+  insertFin.run('fin-015', 'expense', 'maintenance',   'AC Service Charges',           15000, fm, 'Admin',      'pending',  'AC repair and servicing for Room 3 and 4',    'emp-005');
+  insertFin.run('fin-016', 'expense', 'utilities',     'Internet & Electricity March',  55000, fm, 'Admin',      'paid',     'Monthly utility bills',                       'emp-005');
 }
 
 // Seed users

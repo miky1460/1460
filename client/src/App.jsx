@@ -44,8 +44,8 @@ function Layout({ children, title }) {
     { path: '/reports',       label: 'HR Reports',      icon: '📈', show: canManage },
     // Operations
     { path: '/operations',    label: 'Operations',      icon: '📞', show: isCEO || isAdmin || isOps },
-    // Finance
-    { path: '/finance',       label: 'Finance',         icon: '💼', show: isCEO || isAdmin || isFinance },
+    // Finance / Bookkeeping (dept heads submit their own entries)
+    { path: '/finance',       label: isFinance||isCEO||isAdmin ? 'Finance' : 'My Bookkeeping', icon: '💼', show: isCEO || isAdmin || isFinance || isHR || isOpsManager || isOfficeManager },
     // Office
     { path: '/office',        label: 'Office Requests', icon: '🏢', show: isCEO || isAdmin || isOfficeManager },
     // Communication
@@ -158,8 +158,8 @@ function ProtectedApp() {
       {(isCEO||isAdmin||isOps) && (
         <Route path="/operations" element={<Layout title="Operations"><Operations /></Layout>} />
       )}
-      {(isCEO||isAdmin||isFinance) && (
-        <Route path="/finance" element={<Layout title="Finance"><Finance /></Layout>} />
+      {(isCEO||isAdmin||isFinance||isHR||isOpsManager||isOfficeManager) && (
+        <Route path="/finance" element={<Layout title={isFinance||isCEO||isAdmin ? 'Finance' : 'My Bookkeeping'}><Finance /></Layout>} />
       )}
       {(isCEO||isAdmin||isOfficeManager) && (
         <Route path="/office" element={<Layout title="Office Requests"><OfficeRequests /></Layout>} />
