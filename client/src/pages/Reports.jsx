@@ -217,10 +217,10 @@ export default function Reports() {
             <>
               <div style={{ display: 'flex', gap: 16, marginBottom: 20, flexWrap: 'wrap' }}>
                 {[
-                  { label: 'Total Basic', value: `$${payrollData.totals.basic.toLocaleString()}`, color: 'var(--primary)' },
-                  { label: 'Total Bonus', value: `$${payrollData.totals.bonus.toLocaleString()}`, color: 'var(--success)' },
-                  { label: 'Total Deductions', value: `$${payrollData.totals.deductions.toLocaleString()}`, color: 'var(--danger)' },
-                  { label: 'Net Payroll', value: `$${payrollData.totals.net.toLocaleString()}`, color: 'var(--info)' },
+                  { label: 'Total Basic', value: `PKR ${payrollData.totals.basic.toLocaleString()}`, color: 'var(--primary)' },
+                  { label: 'Total Bonus', value: `PKR ${payrollData.totals.bonus.toLocaleString()}`, color: 'var(--success)' },
+                  { label: 'Total Deductions', value: `PKR ${payrollData.totals.deductions.toLocaleString()}`, color: 'var(--danger)' },
+                  { label: 'Net Payroll', value: `PKR ${payrollData.totals.net.toLocaleString()}`, color: 'var(--info)' },
                 ].map(s => (
                   <div key={s.label} style={{ padding: '12px 20px', background: '#f9fafb', borderRadius: 10, borderLeft: `4px solid ${s.color}` }}>
                     <div style={{ fontSize: 22, fontWeight: 700 }}>{s.value}</div>
@@ -240,10 +240,10 @@ export default function Reports() {
                         <td>{e.first_name} {e.last_name}</td>
                         <td>{e.department}</td>
                         <td>{e.position}</td>
-                        <td>${e.basic_salary.toLocaleString()}</td>
-                        <td style={{ color: 'var(--success)' }}>+${e.bonus.toLocaleString()}</td>
-                        <td style={{ color: 'var(--danger)' }}>-${e.deductions.toLocaleString()}</td>
-                        <td><strong>${e.net_salary.toLocaleString()}</strong></td>
+                        <td>PKR {e.basic_salary.toLocaleString()}</td>
+                        <td style={{ color: 'var(--success)' }}>+PKR {e.bonus.toLocaleString()}</td>
+                        <td style={{ color: 'var(--danger)' }}>-PKR {e.deductions.toLocaleString()}</td>
+                        <td><strong>PKR {e.net_salary.toLocaleString()}</strong></td>
                         <td><span className={`badge ${e.status === 'paid' ? 'badge-success' : 'badge-warning'}`}>{e.status}</span></td>
                       </tr>
                     ))}
@@ -251,10 +251,10 @@ export default function Reports() {
                   <tfoot>
                     <tr style={{ background: '#f9fafb', fontWeight: 700 }}>
                       <td colSpan={4}>Total ({payrollData.employees?.length} employees)</td>
-                      <td>${payrollData.totals.basic.toLocaleString()}</td>
-                      <td style={{ color: 'var(--success)' }}>+${payrollData.totals.bonus.toLocaleString()}</td>
-                      <td style={{ color: 'var(--danger)' }}>-${payrollData.totals.deductions.toLocaleString()}</td>
-                      <td>${payrollData.totals.net.toLocaleString()}</td>
+                      <td>PKR {payrollData.totals.basic.toLocaleString()}</td>
+                      <td style={{ color: 'var(--success)' }}>+PKR {payrollData.totals.bonus.toLocaleString()}</td>
+                      <td style={{ color: 'var(--danger)' }}>-PKR {payrollData.totals.deductions.toLocaleString()}</td>
+                      <td>PKR {payrollData.totals.net.toLocaleString()}</td>
                       <td></td>
                     </tr>
                   </tfoot>

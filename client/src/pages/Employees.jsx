@@ -215,7 +215,7 @@ export default function Employees() {
                       </td>
                       <td>{emp.department}</td>
                       <td>{emp.position}</td>
-                      <td>${Number(emp.salary).toLocaleString()}</td>
+                      <td>PKR {Number(emp.salary).toLocaleString()}</td>
                       <td>{emp.join_date}</td>
                       <td>{statusBadge(emp.status)}</td>
                       <td>
@@ -334,7 +334,7 @@ export default function Employees() {
                   ['Employee ID', viewEmp.employee_id],
                   ['Email', viewEmp.email],
                   ['Phone', viewEmp.phone || '-'],
-                  ['Annual Salary', `$${Number(viewEmp.salary).toLocaleString()}`],
+                  ['Annual Salary', `PKR ${Number(viewEmp.salary).toLocaleString()}`],
                   ['Join Date', viewEmp.join_date],
                   ['Status', viewEmp.status],
                 ].map(([k, v]) => (

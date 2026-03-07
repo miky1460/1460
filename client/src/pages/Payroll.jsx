@@ -133,19 +133,19 @@ export default function Payroll() {
       <div className="stat-grid" style={{ marginBottom: 20 }}>
         <div className="stat-card primary">
           <div className="stat-label">Total Basic</div>
-          <div className="stat-value" style={{ fontSize: 22 }}>${totals.basic.toLocaleString()}</div>
+          <div className="stat-value" style={{ fontSize: 22 }}>PKR {totals.basic.toLocaleString()}</div>
         </div>
         <div className="stat-card success">
           <div className="stat-label">Total Bonus</div>
-          <div className="stat-value" style={{ fontSize: 22 }}>${totals.bonus.toLocaleString()}</div>
+          <div className="stat-value" style={{ fontSize: 22 }}>PKR {totals.bonus.toLocaleString()}</div>
         </div>
         <div className="stat-card danger">
           <div className="stat-label">Total Deductions</div>
-          <div className="stat-value" style={{ fontSize: 22 }}>${totals.deductions.toLocaleString()}</div>
+          <div className="stat-value" style={{ fontSize: 22 }}>PKR {totals.deductions.toLocaleString()}</div>
         </div>
         <div className="stat-card info">
           <div className="stat-label">Net Payroll</div>
-          <div className="stat-value" style={{ fontSize: 22 }}>${totals.net.toLocaleString()}</div>
+          <div className="stat-value" style={{ fontSize: 22 }}>PKR {totals.net.toLocaleString()}</div>
         </div>
       </div>
 
@@ -184,10 +184,10 @@ export default function Payroll() {
                       <div style={{ fontSize: 12, color: '#6b7280' }}>{p.emp_code} · {p.position}</div>
                     </td>
                     <td>{p.department}</td>
-                    <td>${p.basic_salary.toLocaleString()}</td>
-                    <td style={{ color: 'var(--success)' }}>+${p.bonus.toLocaleString()}</td>
-                    <td style={{ color: 'var(--danger)' }}>-${p.deductions.toLocaleString()}</td>
-                    <td><strong>${p.net_salary.toLocaleString()}</strong></td>
+                    <td>PKR {p.basic_salary.toLocaleString()}</td>
+                    <td style={{ color: 'var(--success)' }}>+PKR {p.bonus.toLocaleString()}</td>
+                    <td style={{ color: 'var(--danger)' }}>-PKR {p.deductions.toLocaleString()}</td>
+                    <td><strong>PKR {p.net_salary.toLocaleString()}</strong></td>
                     <td>
                       {statusBadge(p.status)}
                       {p.paid_date && <div style={{ fontSize: 11, color: '#6b7280', marginTop: 2 }}>{p.paid_date}</div>}
@@ -206,10 +206,10 @@ export default function Payroll() {
               <tfoot>
                 <tr style={{ background: '#f9fafb', fontWeight: 700 }}>
                   <td colSpan={2}>Totals ({payroll.length} employees)</td>
-                  <td>${totals.basic.toLocaleString()}</td>
-                  <td style={{ color: 'var(--success)' }}>+${totals.bonus.toLocaleString()}</td>
-                  <td style={{ color: 'var(--danger)' }}>-${totals.deductions.toLocaleString()}</td>
-                  <td>${totals.net.toLocaleString()}</td>
+                  <td>PKR {totals.basic.toLocaleString()}</td>
+                  <td style={{ color: 'var(--success)' }}>+PKR {totals.bonus.toLocaleString()}</td>
+                  <td style={{ color: 'var(--danger)' }}>-PKR {totals.deductions.toLocaleString()}</td>
+                  <td>PKR {totals.net.toLocaleString()}</td>
                   <td colSpan={2}></td>
                 </tr>
               </tfoot>
@@ -230,20 +230,20 @@ export default function Payroll() {
               <div className="modal-body">
                 <div className="form-grid">
                   <div className="form-group">
-                    <label>Basic Salary ($)</label>
+                    <label>Basic Salary (PKR)</label>
                     <input type="number" value={editForm.basic_salary} onChange={e => setEditForm({...editForm, basic_salary: e.target.value})} required />
                   </div>
                   <div className="form-group">
-                    <label>Bonus ($)</label>
+                    <label>Bonus (PKR)</label>
                     <input type="number" value={editForm.bonus} onChange={e => setEditForm({...editForm, bonus: e.target.value})} />
                   </div>
                   <div className="form-group">
-                    <label>Deductions ($)</label>
+                    <label>Deductions (PKR)</label>
                     <input type="number" value={editForm.deductions} onChange={e => setEditForm({...editForm, deductions: e.target.value})} />
                   </div>
                   <div className="form-group">
                     <label>Net Salary (calculated)</label>
-                    <input value={`$${((parseFloat(editForm.basic_salary)||0) + (parseFloat(editForm.bonus)||0) - (parseFloat(editForm.deductions)||0)).toLocaleString()}`} readOnly style={{ background: '#f9fafb' }} />
+                    <input value={`PKR ${((parseFloat(editForm.basic_salary)||0) + (parseFloat(editForm.bonus)||0) - (parseFloat(editForm.deductions)||0)).toLocaleString()}`} readOnly style={{ background: '#f9fafb' }} />
                   </div>
                 </div>
               </div>
