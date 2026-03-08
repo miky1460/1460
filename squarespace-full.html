@@ -356,11 +356,19 @@ body,.sqs-layout,.sqs-row,.sqs-col-12,.sqs-block,.sqs-block-content,
 .footer-copy{font-size:13px;color:rgba(220,252,231,.2);}
 /* HERO SOCIALS TOP-RIGHT */
 .hero-socials{
-  position:fixed;top:90px;right:24px;
-  display:flex;align-items:center;gap:10px;
-  z-index:99999;
+  position:fixed !important;
+  top:100px !important;
+  right:24px !important;
+  left:auto !important;
+  bottom:auto !important;
+  display:flex !important;
+  flex-direction:row !important;
+  align-items:center !important;
+  gap:10px !important;
+  z-index:999999 !important;
+  pointer-events:auto !important;
 }
-@media(max-width:600px){.hero-socials{top:12px;right:12px;gap:8px;}}
+@media(max-width:600px){.hero-socials{top:80px !important;right:12px !important;}}
 .social-icon{
   width:40px;height:40px;border-radius:10px;
   background:rgba(34,197,94,.07);
