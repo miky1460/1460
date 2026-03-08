@@ -1,0 +1,632 @@
+<!-- ============================================================
+     KANDZ COMMUNICATIONS — Full Website
+     Squarespace mein paste karne ka tarika:
+     1. Squarespace mein naya blank page banao
+     2. Edit mode mein jao
+     3. "+" click karo → "Code" block add karo
+     4. Yeh SARA code us code block mein paste karo
+     ============================================================ -->
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Syne:wght@400..800&display=swap');
+
+  #kandz-root * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  #kandz-root {
+    font-family: 'DM Sans', sans-serif;
+    background: #0A0A0F;
+    color: #E8E6E1;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .kz-grain-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 999;
+  }
+
+  /* NAV */
+  .kz-nav {
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    background: rgba(10,10,15,0.8);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 16px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .kz-logo { display: flex; align-items: center; gap: 12px; }
+  .kz-logo-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: linear-gradient(135deg, #FF6B35, #FF1493);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 16px; font-family: 'Syne', sans-serif; color: #fff;
+  }
+  .kz-logo-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: 1px; }
+  .kz-nav-links { display: flex; gap: 36px; align-items: center; }
+  .kz-nav-link {
+    color: rgba(232,230,225,0.7); text-decoration: none;
+    font-size: 14px; font-weight: 500; transition: color 0.3s; letter-spacing: 0.5px;
+  }
+  .kz-nav-link:hover { color: #FF6B35; }
+
+  /* BUTTONS */
+  .kz-btn {
+    background: linear-gradient(135deg, #FF6B35, #FF1493);
+    color: white; border: none; padding: 16px 40px;
+    border-radius: 60px; font-size: 16px; font-weight: 600;
+    cursor: pointer; transition: all 0.4s;
+    font-family: 'DM Sans', sans-serif; letter-spacing: 0.5px;
+    position: relative; overflow: hidden; display: inline-block;
+    text-decoration: none;
+  }
+  .kz-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(255,107,53,0.3); }
+  .kz-btn-sm { padding: 10px 28px; font-size: 14px; }
+  .kz-btn-lg { font-size: 18px; padding: 20px 52px; }
+
+  .kz-btn-outline {
+    background: transparent; color: #E8E6E1;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 16px 40px; border-radius: 60px;
+    font-size: 16px; font-weight: 500; cursor: pointer;
+    transition: all 0.4s; font-family: 'DM Sans', sans-serif;
+    display: inline-block; text-decoration: none;
+  }
+  .kz-btn-outline:hover {
+    border-color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.05);
+  }
+
+  /* GRADIENTS & UTILITIES */
+  .kz-text-gradient {
+    background: linear-gradient(135deg, #FF6B35, #FF1493, #7B68EE);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .kz-section-label {
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    color: #FF6B35; font-weight: 600; margin-bottom: 16px; display: inline-block;
+  }
+  .kz-upwork-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg, rgba(20,163,0,0.15), rgba(20,163,0,0.05));
+    border: 1px solid rgba(20,163,0,0.3);
+    padding: 8px 20px; border-radius: 50px;
+    font-size: 13px; font-weight: 600; color: #14A300;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  /* HERO */
+  .kz-hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center; padding: 140px 24px 80px;
+    position: relative;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% -20%, rgba(120,80,255,0.15), transparent),
+      radial-gradient(ellipse 60% 40% at 80% 50%, rgba(255,107,53,0.08), transparent),
+      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(78,205,196,0.06), transparent);
+  }
+  .kz-hero-orb1 {
+    position: absolute; top: 15%; left: 10%;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,107,53,0.08), transparent 70%);
+    filter: blur(40px); animation: kz-float 6s ease-in-out infinite;
+  }
+  .kz-hero-orb2 {
+    position: absolute; bottom: 20%; right: 10%;
+    width: 250px; height: 250px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(123,104,238,0.08), transparent 70%);
+    filter: blur(40px); animation: kz-float 6s ease-in-out infinite; animation-delay: -3s;
+  }
+  .kz-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 7vw, 82px);
+    font-weight: 700; line-height: 1.05; max-width: 900px; margin-bottom: 24px;
+  }
+  .kz-hero p {
+    font-size: clamp(16px, 2vw, 20px);
+    color: rgba(232,230,225,0.6); max-width: 580px; line-height: 1.7; margin-bottom: 48px;
+  }
+  .kz-hero-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .kz-scroll-indicator {
+    position: absolute; bottom: 40px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0.4;
+  }
+  .kz-scroll-indicator span { font-size: 12px; letter-spacing: 2px; }
+  .kz-scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent); }
+
+  /* MARQUEE */
+  .kz-marquee-wrap {
+    overflow: hidden; padding: 24px 0;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .kz-marquee-track {
+    display: flex; gap: 60px;
+    animation: kz-marquee 25s linear infinite;
+    white-space: nowrap; width: max-content;
+  }
+  .kz-marquee-item {
+    font-size: 14px; color: rgba(232,230,225,0.3);
+    font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+  }
+  .kz-marquee-dot { color: #FF6B35; margin: 0 20px; }
+
+  /* STATS */
+  .kz-section { padding: 100px 48px; }
+  .kz-container { max-width: 1100px; margin: 0 auto; }
+  .kz-section-header { text-align: center; margin-bottom: 60px; }
+  .kz-section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 44px); font-weight: 600;
+  }
+  .kz-stats-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px;
+  }
+  .kz-stat-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 32px; text-align: center;
+  }
+  .kz-stat-num {
+    font-family: 'Syne', sans-serif; font-size: 42px; font-weight: 800; margin-bottom: 8px;
+    background: linear-gradient(135deg, #FF6B35, #FF1493, #7B68EE);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .kz-stat-label { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .kz-stat-sub { font-size: 13px; color: rgba(232,230,225,0.4); }
+
+  /* SERVICES */
+  .kz-services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;
+  }
+  .kz-service-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px; padding: 36px;
+    cursor: pointer; transition: all 0.5s cubic-bezier(0.23,1,0.32,1);
+    position: relative; overflow: hidden;
+  }
+  .kz-service-card:hover {
+    border-color: rgba(255,255,255,0.12);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    background: rgba(255,255,255,0.06);
+  }
+  .kz-service-icon { font-size: 36px; margin-bottom: 16px; }
+  .kz-service-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+  .kz-service-desc { color: rgba(232,230,225,0.5); font-size: 14px; line-height: 1.7; }
+
+  /* TESTIMONIALS */
+  .kz-testimonials-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;
+  }
+  .kz-testimonial-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px; padding: 40px; position: relative;
+  }
+  .kz-testimonial-card::before {
+    content: '"'; position: absolute; top: 16px; left: 24px;
+    font-size: 80px; color: rgba(255,107,53,0.15);
+    font-family: 'Playfair Display', serif; line-height: 1;
+  }
+  .kz-testimonial-text {
+    font-size: 15px; line-height: 1.8; color: rgba(232,230,225,0.7);
+    margin-bottom: 24px; position: relative; z-index: 1;
+  }
+  .kz-testimonial-client { font-weight: 600; font-size: 15px; }
+  .kz-testimonial-role { font-size: 13px; color: #FF6B35; }
+
+  /* ABOUT */
+  .kz-about-wrap { display: flex; gap: 60px; align-items: center; flex-wrap: wrap; }
+  .kz-about-text { flex: 1 1 400px; }
+  .kz-about-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 40px); font-weight: 600; margin-bottom: 24px;
+  }
+  .kz-about-text p { color: rgba(232,230,225,0.5); line-height: 1.8; margin-bottom: 20px; font-size: 15px; }
+  .kz-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+  .kz-badge {
+    padding: 8px 18px; border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.1);
+    font-size: 13px; color: rgba(232,230,225,0.6);
+  }
+  .kz-about-visual {
+    flex: 1 1 300px; min-height: 400px; border-radius: 24px;
+    background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(123,104,238,0.1));
+    border: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 16px;
+  }
+  .kz-about-logo-icon {
+    width: 80px; height: 80px; border-radius: 20px;
+    background: linear-gradient(135deg, #FF6B35, #FF1493);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px; font-family: 'Syne', sans-serif; font-weight: 800; color: #fff;
+  }
+  .kz-about-logo-text { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 700; }
+  .kz-about-logo-sub { font-size: 13px; letter-spacing: 3px; color: rgba(232,230,225,0.4); text-transform: uppercase; }
+
+  /* CTA SECTION */
+  .kz-cta-section { padding: 100px 48px; text-align: center; position: relative; }
+  .kz-cta-glow {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,107,53,0.1), transparent 70%);
+    filter: blur(60px);
+  }
+  .kz-cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 52px); font-weight: 700; margin-bottom: 20px;
+    position: relative; z-index: 1;
+  }
+  .kz-cta-section p {
+    color: rgba(232,230,225,0.5); margin-bottom: 40px;
+    font-size: 18px; max-width: 500px; margin: 0 auto 40px;
+    position: relative; z-index: 1;
+  }
+  .kz-cta-section .kz-btn { position: relative; z-index: 1; }
+
+  /* FOOTER */
+  .kz-footer {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 60px 48px 40px;
+  }
+  .kz-footer-inner { max-width: 1100px; margin: 0 auto; }
+  .kz-footer-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; margin-bottom: 40px; }
+  .kz-footer-brand { flex: 1 1 250px; }
+  .kz-footer-brand-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .kz-footer-logo-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, #FF6B35, #FF1493);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 14px; font-family: 'Syne', sans-serif; color: #fff;
+  }
+  .kz-footer-brand-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px; }
+  .kz-footer-brand p { font-size: 14px; color: rgba(232,230,225,0.4); line-height: 1.7; }
+  .kz-footer-col-title {
+    font-weight: 600; font-size: 14px; margin-bottom: 16px;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .kz-footer-links { display: flex; flex-direction: column; gap: 10px; }
+  .kz-footer-link {
+    color: rgba(232,230,225,0.5); text-decoration: none;
+    transition: color 0.3s; font-size: 14px;
+  }
+  .kz-footer-link:hover { color: #FF6B35; }
+  .kz-footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .kz-footer-copy { font-size: 13px; color: rgba(232,230,225,0.3); }
+
+  /* ANIMATIONS */
+  @keyframes kz-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  @keyframes kz-marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes kz-fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .kz-animate { animation: kz-fadeInUp 0.8s cubic-bezier(0.23,1,0.32,1) forwards; }
+  .kz-d1 { animation-delay: 0.1s; opacity: 0; }
+  .kz-d2 { animation-delay: 0.25s; opacity: 0; }
+  .kz-d3 { animation-delay: 0.4s; opacity: 0; }
+  .kz-d4 { animation-delay: 0.55s; opacity: 0; }
+
+  .kz-fade-section {
+    transition: all 1s ease;
+    opacity: 0; transform: translateY(48px);
+  }
+  .kz-fade-section.kz-visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .kz-nav { padding: 16px 20px; }
+    .kz-nav-links { display: none; }
+    .kz-section { padding: 60px 20px; }
+    .kz-cta-section, .kz-footer { padding: 60px 20px; }
+    .kz-hero { padding: 120px 20px 80px; }
+  }
+</style>
+
+<div id="kandz-root">
+  <div class="kz-grain-overlay"></div>
+
+  <!-- NAV -->
+  <nav class="kz-nav">
+    <div class="kz-logo">
+      <div class="kz-logo-icon">K</div>
+      <span class="kz-logo-text">KANDZ</span>
+    </div>
+    <div class="kz-nav-links">
+      <a href="#kz-top" class="kz-nav-link">Home</a>
+      <a href="#kz-services" class="kz-nav-link">Services</a>
+      <a href="#kz-results" class="kz-nav-link">Results</a>
+      <a href="#kz-testimonials" class="kz-nav-link">Testimonials</a>
+      <a href="#kz-about" class="kz-nav-link">About</a>
+      <a href="https://calendly.com/syed-kandz" target="_blank" class="kz-btn kz-btn-sm">Book a Call</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="kz-hero" id="kz-top">
+    <div class="kz-hero-orb1"></div>
+    <div class="kz-hero-orb2"></div>
+
+    <div class="kz-animate kz-d1" style="margin-bottom:32px;">
+      <div class="kz-upwork-badge"><span>●</span> Top Rated Plus on Upwork</div>
+    </div>
+
+    <h1 class="kz-animate kz-d2">
+      We Execute<br>
+      <span class="kz-text-gradient">Your Growth</span>
+    </h1>
+
+    <p class="kz-animate kz-d3">
+      From lead generation to sales execution, marketing to operations — we're the team that scales your business while you focus on strategy.
+    </p>
+
+    <div class="kz-hero-btns kz-animate kz-d4">
+      <a href="https://calendly.com/syed-kandz" target="_blank" class="kz-btn">Book a Free Consultation →</a>
+      <a href="#kz-services" class="kz-btn-outline">View Our Work</a>
+    </div>
+
+    <div class="kz-scroll-indicator">
+      <span>SCROLL</span>
+      <div class="kz-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="kz-marquee-wrap">
+    <div class="kz-marquee-track" id="kzMarquee">
+      <span class="kz-marquee-item">Lead Generation <span class="kz-marquee-dot">✦</span></span>
+      <span class="kz-marquee-item">Sales Execution <span class="kz-marquee-dot">✦</span></span>
+      <span class="kz-marquee-item">Call Center <span class="kz-marquee-dot">✦</span></span>
+      <span class="kz-marquee-item">SEO & Marketing <span class="kz-marquee-dot">✦</span></span>
+      <span class="kz-marquee-item">Google & Meta Ads <span class="kz-marquee-dot">✦</span></span>
+      <span class="kz-marquee-item">Admin Support <span class="kz-marquee-dot">✦</span></span>
+      <span class="kz-marquee-item">Creative Design <span class="kz-marquee-dot">✦</span></span>
+      <span class="kz-marquee-item">CRM Management <span class="kz-marquee-dot">✦</span></span>
+      <span class="kz-marquee-item">Virtual Assistance <span class="kz-marquee-dot">✦</span></span>
+      <span class="kz-marquee-item">Lead Generation <span class="kz-marquee-dot">✦</span></span>
+      <span class="kz-marquee-item">Sales Execution <span class="kz-marquee-dot">✦</span></span>
+      <span class="kz-marquee-item">Call Center <span class="kz-marquee-dot">✦</span></span>
+      <span class="kz-marquee-item">SEO & Marketing <span class="kz-marquee-dot">✦</span></span>
+      <span class="kz-marquee-item">Google & Meta Ads <span class="kz-marquee-dot">✦</span></span>
+      <span class="kz-marquee-item">Admin Support <span class="kz-marquee-dot">✦</span></span>
+      <span class="kz-marquee-item">Creative Design <span class="kz-marquee-dot">✦</span></span>
+      <span class="kz-marquee-item">CRM Management <span class="kz-marquee-dot">✦</span></span>
+      <span class="kz-marquee-item">Virtual Assistance <span class="kz-marquee-dot">✦</span></span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <section class="kz-section" id="kz-results">
+    <div class="kz-container kz-fade-section" id="kzStats">
+      <div class="kz-section-header">
+        <span class="kz-section-label">Our Track Record</span>
+        <h2>Numbers That <span class="kz-text-gradient">Speak</span></h2>
+      </div>
+      <div class="kz-stats-grid">
+        <div class="kz-stat-card">
+          <div class="kz-stat-num" id="kzCount1">0+</div>
+          <div class="kz-stat-label">Team Members</div>
+          <div class="kz-stat-sub">Skilled professionals</div>
+        </div>
+        <div class="kz-stat-card">
+          <div class="kz-stat-num" id="kzCount2">0+</div>
+          <div class="kz-stat-label">Total Contracts</div>
+          <div class="kz-stat-sub">Successfully delivered</div>
+        </div>
+        <div class="kz-stat-card">
+          <div class="kz-stat-num" id="kzCount3">0+</div>
+          <div class="kz-stat-label">Hours on Upwork</div>
+          <div class="kz-stat-sub">Of dedicated work</div>
+        </div>
+        <div class="kz-stat-card">
+          <div class="kz-stat-num" id="kzCount4">0%</div>
+          <div class="kz-stat-label">Client Satisfaction</div>
+          <div class="kz-stat-sub">5-star reviews</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="kz-section" id="kz-services" style="padding-top:80px; padding-bottom:100px;">
+    <div class="kz-container kz-fade-section" id="kzServices">
+      <div class="kz-section-header">
+        <span class="kz-section-label">What We Do</span>
+        <h2>Full-Stack <span class="kz-text-gradient">Growth Services</span></h2>
+        <p style="color:rgba(232,230,225,0.5); margin-top:16px; max-width:500px; margin-left:auto; margin-right:auto; line-height:1.7;">
+          Everything you need to scale — under one roof, one team, one partner.
+        </p>
+      </div>
+      <div class="kz-services-grid">
+        <div class="kz-service-card">
+          <div class="kz-service-icon">🎯</div>
+          <div class="kz-service-title" style="color:#FF6B35;">Lead Generation & Sales</div>
+          <div class="kz-service-desc">End-to-end lead gen, appointment setting, cold calling, and sales closing for B2B & B2C. We don't just find leads — we convert them.</div>
+        </div>
+        <div class="kz-service-card">
+          <div class="kz-service-icon">📞</div>
+          <div class="kz-service-title" style="color:#4ECDC4;">Call & Contact Center</div>
+          <div class="kz-service-desc">24/7 inbound & outbound support. Phone, email, chat — your customers get instant, professional assistance round the clock.</div>
+        </div>
+        <div class="kz-service-card">
+          <div class="kz-service-icon">📈</div>
+          <div class="kz-service-title" style="color:#7B68EE;">SEO & Digital Marketing</div>
+          <div class="kz-service-desc">Dominate search rankings with data-driven SEO, content marketing, and strategic link building using Semrush & Ahrefs.</div>
+        </div>
+        <div class="kz-service-card">
+          <div class="kz-service-icon">🎨</div>
+          <div class="kz-service-title" style="color:#FF1493;">Creative & Design</div>
+          <div class="kz-service-desc">Brand identity, graphic design, video editing, and motion graphics that make your brand unforgettable.</div>
+        </div>
+        <div class="kz-service-card">
+          <div class="kz-service-icon">💻</div>
+          <div class="kz-service-title" style="color:#00CED1;">Google & Meta Ads</div>
+          <div class="kz-service-desc">ROI-focused paid campaigns on Google, Facebook & Instagram. Every dollar tracked, every conversion optimized.</div>
+        </div>
+        <div class="kz-service-card">
+          <div class="kz-service-icon">⚡</div>
+          <div class="kz-service-title" style="color:#FFD700;">Admin & Virtual Assistance</div>
+          <div class="kz-service-desc">Executive VAs, data entry, CRM management, calendar handling — we become your remote operations team.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="kz-section" id="kz-testimonials" style="padding-top:80px; padding-bottom:100px;">
+    <div class="kz-container kz-fade-section" id="kzTestimonials">
+      <div class="kz-section-header">
+        <span class="kz-section-label">Client Love</span>
+        <h2>Don't Take Our Word. <span class="kz-text-gradient">Take Theirs.</span></h2>
+      </div>
+      <div class="kz-testimonials-grid">
+        <div class="kz-testimonial-card">
+          <p class="kz-testimonial-text">"The expert team KANDZ assembled delivered truly exceptional results in support of our critical lead generation efforts."</p>
+          <div class="kz-testimonial-client">Structural & MEP Design Firm</div>
+          <div class="kz-testimonial-role">Lead Generation Operations</div>
+        </div>
+        <div class="kz-testimonial-card">
+          <p class="kz-testimonial-text">"The team showed thorough understanding of SEO best practices and Google AdWords at the expert level."</p>
+          <div class="kz-testimonial-client">GDI Engineering</div>
+          <div class="kz-testimonial-role">Google Ads & SEO</div>
+        </div>
+        <div class="kz-testimonial-card">
+          <p class="kz-testimonial-text">"They assembled a team that provided outstanding customer service. The level of experience was simply remarkable."</p>
+          <div class="kz-testimonial-client">Enterprise Client</div>
+          <div class="kz-testimonial-role">Customer Support</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="kz-section" id="kz-about" style="padding-top:80px; padding-bottom:100px;">
+    <div class="kz-container kz-fade-section" id="kzAbout">
+      <div class="kz-about-wrap">
+        <div class="kz-about-text">
+          <span class="kz-section-label">About KANDZ</span>
+          <h2>Your Growth Team,<br><span class="kz-text-gradient">Based in Pakistan,</span><br>Serving the World</h2>
+          <p>Founded in 2019, KANDZ Communications has grown from a small call center to a full-service growth execution agency. With 50+ skilled professionals, we've completed 200+ contracts on Upwork with a Top Rated Plus badge.</p>
+          <p>90% of our team are university graduates. Many have lived in the USA and Europe, giving us deep cultural understanding for targeting specific markets globally.</p>
+          <div class="kz-badges">
+            <span class="kz-badge">Upwork Top Rated Plus</span>
+            <span class="kz-badge">50+ Team Members</span>
+            <span class="kz-badge">Since 2019</span>
+            <span class="kz-badge">Global Clients</span>
+          </div>
+        </div>
+        <div class="kz-about-visual">
+          <div class="kz-about-logo-icon">K</div>
+          <div class="kz-about-logo-text">KANDZ</div>
+          <div class="kz-about-logo-sub">Communications</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="kz-cta-section">
+    <div class="kz-cta-glow"></div>
+    <h2>Ready to <span class="kz-text-gradient">Scale?</span></h2>
+    <p>Book a free consultation. Let's discuss how we can become your growth execution team.</p>
+    <a href="https://calendly.com/syed-kandz" target="_blank" class="kz-btn kz-btn-lg">Book Your Free Call →</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="kz-footer">
+    <div class="kz-footer-inner">
+      <div class="kz-footer-top">
+        <div class="kz-footer-brand">
+          <div class="kz-footer-brand-row">
+            <div class="kz-footer-logo-icon">K</div>
+            <span class="kz-footer-brand-name">KANDZ Communications</span>
+          </div>
+          <p>Your growth execution partner. Based in Pakistan, serving clients worldwide.</p>
+        </div>
+        <div>
+          <div class="kz-footer-col-title">Quick Links</div>
+          <div class="kz-footer-links">
+            <a href="#kz-services" class="kz-footer-link">Services</a>
+            <a href="#kz-results" class="kz-footer-link">Results</a>
+            <a href="#kz-about" class="kz-footer-link">About</a>
+            <a href="https://calendly.com/syed-kandz" target="_blank" class="kz-footer-link">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div class="kz-footer-col-title">Contact</div>
+          <div class="kz-footer-links">
+            <span class="kz-footer-link">Syed@kandz.io</span>
+            <a href="https://www.upwork.com/agencies/kandzio/" class="kz-footer-link" target="_blank">Upwork Profile →</a>
+            <a href="https://calendly.com/syed-kandz" class="kz-footer-link" target="_blank">Book a Call →</a>
+          </div>
+        </div>
+      </div>
+      <div class="kz-footer-bottom">
+        <span class="kz-footer-copy">© 2024 KANDZ Communications. All rights reserved.</span>
+        <div class="kz-upwork-badge" style="font-size:11px;"><span>●</span> Top Rated Plus</div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // Scroll animations
+  var kzFadeSections = document.querySelectorAll('.kz-fade-section');
+  var kzObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('kz-visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  kzFadeSections.forEach(function(el) { kzObserver.observe(el); });
+
+  // Counter animation
+  var kzCounted = false;
+  var kzStatsEl = document.getElementById('kzStats');
+  var kzCountObserver = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting && !kzCounted) {
+      kzCounted = true;
+      var targets = { c1: 50, c2: 200, c3: 17500, c4: 100 };
+      var duration = 2000, steps = 60, interval = duration / steps, step = 0;
+      var timer = setInterval(function() {
+        step++;
+        var ease = 1 - Math.pow(1 - step / steps, 3);
+        document.getElementById('kzCount1').textContent = Math.round(targets.c1 * ease) + '+';
+        document.getElementById('kzCount2').textContent = Math.round(targets.c2 * ease) + '+';
+        document.getElementById('kzCount3').textContent = Math.round(targets.c3 * ease).toLocaleString() + '+';
+        document.getElementById('kzCount4').textContent = Math.round(targets.c4 * ease) + '%';
+        if (step >= steps) clearInterval(timer);
+      }, interval);
+    }
+  }, { threshold: 0.3 });
+  if (kzStatsEl) kzCountObserver.observe(kzStatsEl);
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#kz-"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
