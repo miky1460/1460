@@ -230,12 +230,47 @@ const KANDZ = () => {
         }
         .nav-link:hover { color: #FF6B35; }
 
+        .show-mobile { display: none !important; }
+
         @media (max-width: 768px) {
           .hide-mobile { display: none !important; }
+          .show-mobile { display: flex !important; }
           .mobile-full { width: 100% !important; }
           .mobile-col { flex-direction: column !important; }
           .mobile-text-center { text-align: center !important; }
           .mobile-padding { padding: 0 20px !important; }
+
+          nav.nav-blur { padding: 14px 20px !important; }
+
+          section { padding-left: 20px !important; padding-right: 20px !important; }
+          footer { padding-left: 20px !important; padding-right: 20px !important; }
+
+          .stat-card { padding: 24px 16px !important; }
+          .testimonial-card { padding: 28px 20px !important; }
+
+          .glow-card { padding: 24px !important; }
+
+          .mobile-menu {
+            position: fixed; top: 68px; left: 0; right: 0;
+            background: rgba(10,10,15,0.97);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            padding: 24px 24px 32px;
+            display: flex; flex-direction: column; gap: 20px;
+            z-index: 98;
+          }
+
+          .mobile-menu a, .mobile-menu button {
+            font-size: 18px !important; font-weight: 500;
+            color: rgba(232,230,225,0.85) !important;
+            text-decoration: none; text-align: left;
+          }
+
+          .hero-btns { flex-direction: column !important; align-items: stretch !important; }
+          .hero-btns .cta-button, .hero-btns .cta-outline {
+            width: 100% !important; text-align: center !important;
+            box-sizing: border-box !important;
+          }
         }
       `}</style>
 
@@ -255,8 +290,20 @@ const KANDZ = () => {
           <a href="#about" className="nav-link">About</a>
           <a href="https://calendly.com/syed-kandz" target="_blank" rel="noopener" className="cta-button" style={{ padding: "10px 28px", fontSize: 14, textDecoration: "none" }}>Book a Call</a>
         </div>
-        <button className="hide-mobile" style={{ display: "none", background: "none", border: "none", color: "#E8E6E1", fontSize: 24, cursor: "pointer" }} onClick={() => setIsMenuOpen(!isMenuOpen)}>☰</button>
+        <button className="show-mobile" style={{ background: "none", border: "none", color: "#E8E6E1", fontSize: 24, cursor: "pointer", padding: 4 }} onClick={() => setIsMenuOpen(!isMenuOpen)}>{isMenuOpen ? "✕" : "☰"}</button>
       </nav>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="mobile-menu">
+          <a href="#" onClick={() => setIsMenuOpen(false)} className="nav-link" style={{ fontSize: 17 }}>Home</a>
+          <a href="#services" onClick={() => setIsMenuOpen(false)} className="nav-link" style={{ fontSize: 17 }}>Services</a>
+          <a href="#results" onClick={() => setIsMenuOpen(false)} className="nav-link" style={{ fontSize: 17 }}>Results</a>
+          <a href="#testimonials" onClick={() => setIsMenuOpen(false)} className="nav-link" style={{ fontSize: 17 }}>Testimonials</a>
+          <a href="#about" onClick={() => setIsMenuOpen(false)} className="nav-link" style={{ fontSize: 17 }}>About</a>
+          <a href="https://calendly.com/syed-kandz" target="_blank" rel="noopener" className="cta-button" onClick={() => setIsMenuOpen(false)} style={{ textDecoration: "none", textAlign: "center", marginTop: 8 }}>Book a Call →</a>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section className="hero-gradient" style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", padding: "140px 24px 80px", position: "relative" }}>
@@ -280,7 +327,7 @@ const KANDZ = () => {
           From lead generation to sales execution, marketing to operations — we're the team that scales your business while you focus on strategy.
         </p>
 
-        <div className="animate-in delay-4" style={{ display: "flex", gap: 16, flexWrap: "wrap", justifyContent: "center" }}>
+        <div className="animate-in delay-4 hero-btns" style={{ display: "flex", gap: 16, flexWrap: "wrap", justifyContent: "center", width: "100%", maxWidth: 480, margin: "0 auto" }}>
           <a href="https://calendly.com/syed-kandz" target="_blank" rel="noopener" className="cta-button" style={{ textDecoration: "none" }}>Book a Free Consultation →</a>
           <button className="cta-outline">View Our Work</button>
         </div>
