@@ -1,569 +1,829 @@
-<!-- ============================================================
-     KANDZ COMMUNICATIONS — No Header/Footer Version
-     Desktop + Mobile Compatible
-     Squarespace mein paste karne ka tarika:
-     1. Squarespace mein naya blank page banao
-     2. Edit mode mein jao
-     3. "+" click karo → "Code" block add karo
-     4. Yeh SARA code us code block mein paste karo
-     ============================================================ -->
-
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Syne:wght@400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Syne:wght@700;800&display=swap');
 
-  /* Squarespace page override */
-  body, .sqs-layout, .sqs-block, .sqs-block-content,
-  .page-section, .content-wrapper, [data-section-theme] {
-    background: #0A0A0F !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-  .sqs-block-code { padding: 0 !important; margin: 0 !important; }
+/* ── SQUARESPACE OVERRIDES ── */
+body,.sqs-layout,.sqs-row,.sqs-col-12,.sqs-block,.sqs-block-content,
+.page-section,.content-wrapper,.sqs-block-code,
+[data-section-theme],#page,.Main{
+  background:#05050A!important;
+  padding:0!important;margin:0!important;
+}
+.sqs-block-code{padding:0!important;margin:0!important;}
 
-  #kandz-root * { margin: 0; padding: 0; box-sizing: border-box; }
+/* ── BASE ── */
+*{margin:0;padding:0;box-sizing:border-box;}
+#kw{
+  font-family:'Inter',sans-serif;
+  background:#05050A;
+  color:#EAEAEA;
+  overflow-x:hidden;
+  width:100%;
+}
 
-  #kandz-root {
-    font-family: 'DM Sans', sans-serif;
-    background: #0A0A0F;
-    color: #E8E6E1;
-    min-height: 100vh;
-    overflow-x: hidden;
-    width: 100%;
-  }
+/* ── TYPOGRAPHY ── */
+.serif{font-family:'Playfair Display',serif;}
+.syne{font-family:'Syne',sans-serif;}
 
-  .kz-grain-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 999;
-  }
+/* ── GRADIENT UTILITIES ── */
+.grad-text{
+  background:linear-gradient(135deg,#FF5C35 0%,#FF2079 50%,#8B5CF6 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.grad-text-teal{
+  background:linear-gradient(135deg,#00C9A7,#00A3FF);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
 
-  /* BUTTONS */
-  .kz-btn {
-    background: linear-gradient(135deg, #FF6B35, #FF1493);
-    color: white; border: none; padding: 16px 40px;
-    border-radius: 60px; font-size: 16px; font-weight: 600;
-    cursor: pointer; transition: all 0.4s;
-    font-family: 'DM Sans', sans-serif; letter-spacing: 0.5px;
-    position: relative; overflow: hidden; display: inline-block;
-    text-decoration: none;
-  }
-  .kz-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(255,107,53,0.3); }
-  .kz-btn-sm { padding: 10px 28px; font-size: 14px; }
-  .kz-btn-lg { font-size: 18px; padding: 20px 52px; }
+/* ── LABEL ── */
+.eyebrow{
+  font-size:11px;letter-spacing:4px;text-transform:uppercase;
+  color:#FF5C35;font-weight:700;display:inline-block;margin-bottom:14px;
+}
 
-  .kz-btn-outline {
-    background: transparent; color: #E8E6E1;
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 16px 40px; border-radius: 60px;
-    font-size: 16px; font-weight: 500; cursor: pointer;
-    transition: all 0.4s; font-family: 'DM Sans', sans-serif;
-    display: inline-block; text-decoration: none;
-  }
-  .kz-btn-outline:hover {
-    border-color: rgba(255,255,255,0.5);
-    background: rgba(255,255,255,0.05);
-  }
+/* ── BUTTONS ── */
+.btn-main{
+  background:linear-gradient(135deg,#FF5C35,#FF2079);
+  color:#fff;border:none;padding:16px 44px;border-radius:100px;
+  font-size:15px;font-weight:700;cursor:pointer;
+  font-family:'Inter',sans-serif;letter-spacing:.3px;
+  position:relative;overflow:hidden;display:inline-block;
+  text-decoration:none;transition:all .4s;
+  box-shadow:0 4px 30px rgba(255,92,53,.25);
+}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(255,92,53,.4);}
+.btn-main.lg{padding:20px 56px;font-size:17px;}
 
-  /* GRADIENTS & UTILITIES */
-  .kz-text-gradient {
-    background: linear-gradient(135deg, #FF6B35, #FF1493, #7B68EE);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .kz-section-label {
-    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
-    color: #FF6B35; font-weight: 600; margin-bottom: 16px; display: inline-block;
-  }
-  .kz-upwork-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: linear-gradient(135deg, rgba(20,163,0,0.15), rgba(20,163,0,0.05));
-    border: 1px solid rgba(20,163,0,0.3);
-    padding: 8px 20px; border-radius: 50px;
-    font-size: 13px; font-weight: 600; color: #14A300;
-    letter-spacing: 1px; text-transform: uppercase;
-  }
+.btn-ghost{
+  background:transparent;color:#EAEAEA;
+  border:1px solid rgba(255,255,255,.18);
+  padding:16px 44px;border-radius:100px;
+  font-size:15px;font-weight:600;cursor:pointer;
+  font-family:'Inter',sans-serif;
+  display:inline-block;text-decoration:none;transition:all .4s;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.05);}
 
-  /* HERO */
-  .kz-hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    justify-content: center; align-items: center;
-    text-align: center; padding: 80px 24px 80px;
-    position: relative;
-    background:
-      radial-gradient(ellipse 80% 60% at 50% -20%, rgba(120,80,255,0.15), transparent),
-      radial-gradient(ellipse 60% 40% at 80% 50%, rgba(255,107,53,0.08), transparent),
-      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(78,205,196,0.06), transparent);
-  }
-  .kz-hero-orb1 {
-    position: absolute; top: 15%; left: 10%;
-    width: 300px; height: 300px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,107,53,0.08), transparent 70%);
-    filter: blur(40px); animation: kz-float 6s ease-in-out infinite;
-  }
-  .kz-hero-orb2 {
-    position: absolute; bottom: 20%; right: 10%;
-    width: 250px; height: 250px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(123,104,238,0.08), transparent 70%);
-    filter: blur(40px); animation: kz-float 6s ease-in-out infinite; animation-delay: -3s;
-  }
-  .kz-hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(36px, 7vw, 82px);
-    font-weight: 700; line-height: 1.05; max-width: 900px; margin-bottom: 24px;
-  }
-  .kz-hero p {
-    font-size: clamp(15px, 2vw, 20px);
-    color: rgba(232,230,225,0.6); max-width: 580px; line-height: 1.7; margin-bottom: 48px;
-  }
-  .kz-hero-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-  .kz-scroll-indicator {
-    position: absolute; bottom: 40px;
-    display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0.4;
-  }
-  .kz-scroll-indicator span { font-size: 12px; letter-spacing: 2px; }
-  .kz-scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent); }
+/* ── SECTION BASE ── */
+.sec{padding:110px 60px;}
+.wrap{max-width:1160px;margin:0 auto;}
+.sec-head{text-align:center;margin-bottom:72px;}
+.sec-head h2{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,50px);font-weight:700;line-height:1.1;}
+.sec-head p{color:rgba(234,234,234,.5);font-size:17px;max-width:520px;margin:16px auto 0;line-height:1.75;}
 
-  /* MARQUEE */
-  .kz-marquee-wrap {
-    overflow: hidden; padding: 24px 0;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-  .kz-marquee-track {
-    display: flex; gap: 60px;
-    animation: kz-marquee 25s linear infinite;
-    white-space: nowrap; width: max-content;
-  }
-  .kz-marquee-item {
-    font-size: 14px; color: rgba(232,230,225,0.3);
-    font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
-  }
-  .kz-marquee-dot { color: #FF6B35; margin: 0 20px; }
+/* ════════════════════════════
+   HERO
+════════════════════════════ */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  text-align:center;
+  padding:100px 32px 120px;
+  position:relative;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% -10%,rgba(100,60,220,.18),transparent),
+    radial-gradient(ellipse 50% 40% at 85% 55%,rgba(255,92,53,.1),transparent),
+    radial-gradient(ellipse 50% 40% at 15% 70%,rgba(0,201,167,.07),transparent);
+}
+.hero-orb{
+  position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;
+}
+.hero-orb-a{
+  width:420px;height:420px;top:5%;left:-80px;
+  background:radial-gradient(circle,rgba(255,92,53,.09),transparent 65%);
+  animation:floatA 8s ease-in-out infinite;
+}
+.hero-orb-b{
+  width:380px;height:380px;bottom:10%;right:-60px;
+  background:radial-gradient(circle,rgba(139,92,246,.1),transparent 65%);
+  animation:floatA 8s ease-in-out infinite;animation-delay:-4s;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(20,163,0,.1);
+  border:1px solid rgba(20,163,0,.25);
+  padding:10px 24px;border-radius:100px;
+  font-size:13px;font-weight:700;color:#22C55E;
+  letter-spacing:1.5px;text-transform:uppercase;
+  margin-bottom:36px;
+}
+.hero-badge span{display:inline-block;width:8px;height:8px;border-radius:50%;background:#22C55E;animation:pulse 2s infinite;}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(44px,8vw,96px);
+  font-weight:700;line-height:1.0;
+  max-width:960px;margin-bottom:28px;
+}
+.hero-sub{
+  font-size:clamp(16px,2vw,20px);
+  color:rgba(234,234,234,.55);
+  max-width:600px;line-height:1.8;margin-bottom:52px;
+}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
+.hero-scroll{
+  position:absolute;bottom:44px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  opacity:.35;
+}
+.hero-scroll span{font-size:10px;letter-spacing:4px;text-transform:uppercase;}
+.hero-scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,rgba(255,255,255,.6),transparent);}
 
-  /* STATS */
-  .kz-section { padding: 80px 48px; }
-  .kz-container { max-width: 1100px; margin: 0 auto; }
-  .kz-section-header { text-align: center; margin-bottom: 60px; }
-  .kz-section-header h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(26px, 4vw, 44px); font-weight: 600;
-  }
-  .kz-stats-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px;
-  }
-  .kz-stat-card {
-    background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 16px; padding: 32px; text-align: center;
-  }
-  .kz-stat-num {
-    font-family: 'Syne', sans-serif; font-size: 42px; font-weight: 800; margin-bottom: 8px;
-    background: linear-gradient(135deg, #FF6B35, #FF1493, #7B68EE);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  }
-  .kz-stat-label { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
-  .kz-stat-sub { font-size: 13px; color: rgba(232,230,225,0.4); }
+/* ════════════════════════════
+   MARQUEE
+════════════════════════════ */
+.mq-wrap{
+  overflow:hidden;padding:26px 0;
+  border-top:1px solid rgba(255,255,255,.05);
+  border-bottom:1px solid rgba(255,255,255,.05);
+  background:rgba(255,255,255,.015);
+}
+.mq-track{
+  display:flex;gap:0;
+  animation:marquee 30s linear infinite;
+  white-space:nowrap;width:max-content;
+}
+.mq-item{
+  font-size:13px;color:rgba(234,234,234,.28);
+  font-weight:600;letter-spacing:3px;text-transform:uppercase;
+  padding:0 40px;
+  border-right:1px solid rgba(255,255,255,.08);
+}
+.mq-item.accent{color:rgba(255,92,53,.5);}
 
-  /* SERVICES */
-  .kz-services-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;
-  }
-  .kz-service-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 20px; padding: 36px;
-    cursor: pointer; transition: all 0.5s cubic-bezier(0.23,1,0.32,1);
-    position: relative; overflow: hidden;
-  }
-  .kz-service-card:hover {
-    border-color: rgba(255,255,255,0.12);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    background: rgba(255,255,255,0.06);
-  }
-  .kz-service-icon { font-size: 36px; margin-bottom: 16px; }
-  .kz-service-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 12px; }
-  .kz-service-desc { color: rgba(232,230,225,0.5); font-size: 14px; line-height: 1.7; }
+/* ════════════════════════════
+   STATS
+════════════════════════════ */
+.stats-sec{
+  padding:80px 60px;
+  background:linear-gradient(180deg,rgba(255,92,53,.03) 0%,transparent 100%);
+}
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:2px;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:24px;overflow:hidden;
+}
+.stat-box{
+  padding:44px 32px;text-align:center;
+  background:rgba(255,255,255,.025);
+  border-right:1px solid rgba(255,255,255,.07);
+  transition:background .4s;
+}
+.stat-box:last-child{border-right:none;}
+.stat-box:hover{background:rgba(255,255,255,.05);}
+.stat-num{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(40px,4vw,56px);font-weight:800;
+  background:linear-gradient(135deg,#FF5C35,#FF2079,#8B5CF6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:8px;line-height:1;
+}
+.stat-label{font-size:15px;font-weight:700;color:#EAEAEA;margin-bottom:6px;}
+.stat-sub{font-size:13px;color:rgba(234,234,234,.38);}
 
-  /* TESTIMONIALS */
-  .kz-testimonials-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;
-  }
-  .kz-testimonial-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 20px; padding: 40px; position: relative;
-  }
-  .kz-testimonial-card::before {
-    content: '"'; position: absolute; top: 16px; left: 24px;
-    font-size: 80px; color: rgba(255,107,53,0.15);
-    font-family: 'Playfair Display', serif; line-height: 1;
-  }
-  .kz-testimonial-text {
-    font-size: 15px; line-height: 1.8; color: rgba(232,230,225,0.7);
-    margin-bottom: 24px; position: relative; z-index: 1;
-  }
-  .kz-testimonial-client { font-weight: 600; font-size: 15px; }
-  .kz-testimonial-role { font-size: 13px; color: #FF6B35; }
+/* ════════════════════════════
+   SERVICES
+════════════════════════════ */
+.services-sec{background:rgba(255,255,255,.012);}
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.svc-card{
+  background:rgba(255,255,255,.028);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:20px;padding:40px 36px;
+  transition:all .5s cubic-bezier(.23,1,.32,1);
+  position:relative;overflow:hidden;
+}
+.svc-card::before{
+  content:'';position:absolute;inset:0;border-radius:20px;
+  background:linear-gradient(135deg,transparent,rgba(255,255,255,.03));
+  opacity:0;transition:opacity .5s;
+}
+.svc-card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.14);box-shadow:0 30px 80px rgba(0,0,0,.4);}
+.svc-card:hover::before{opacity:1;}
+.svc-icon{
+  width:52px;height:52px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;margin-bottom:20px;
+  background:rgba(255,255,255,.05);
+}
+.svc-name{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:12px;}
+.svc-desc{color:rgba(234,234,234,.45);font-size:14px;line-height:1.75;}
+.svc-tag{
+  display:inline-block;margin-top:20px;
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:5px 14px;border-radius:100px;
+  background:rgba(255,92,53,.1);color:rgba(255,92,53,.8);
+  border:1px solid rgba(255,92,53,.2);
+}
 
-  /* ABOUT */
-  .kz-about-wrap { display: flex; gap: 60px; align-items: center; flex-wrap: wrap; }
-  .kz-about-text { flex: 1 1 400px; }
-  .kz-about-text h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(26px, 4vw, 40px); font-weight: 600; margin-bottom: 24px;
-  }
-  .kz-about-text p { color: rgba(232,230,225,0.5); line-height: 1.8; margin-bottom: 20px; font-size: 15px; }
-  .kz-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
-  .kz-badge {
-    padding: 8px 18px; border-radius: 50px;
-    border: 1px solid rgba(255,255,255,0.1);
-    font-size: 13px; color: rgba(232,230,225,0.6);
-  }
-  .kz-about-visual {
-    flex: 1 1 280px; min-height: 360px; border-radius: 24px;
-    background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(123,104,238,0.1));
-    border: 1px solid rgba(255,255,255,0.06);
-    display: flex; align-items: center; justify-content: center;
-    flex-direction: column; gap: 16px;
-  }
-  .kz-about-logo-icon {
-    width: 80px; height: 80px; border-radius: 20px;
-    background: linear-gradient(135deg, #FF6B35, #FF1493);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 36px; font-family: 'Syne', sans-serif; font-weight: 800; color: #fff;
-  }
-  .kz-about-logo-text { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 700; }
-  .kz-about-logo-sub { font-size: 13px; letter-spacing: 3px; color: rgba(232,230,225,0.4); text-transform: uppercase; }
+/* ════════════════════════════
+   HOW WE WORK
+════════════════════════════ */
+.process-sec{}
+.process-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border:1px solid rgba(255,255,255,.07);border-radius:24px;overflow:hidden;
+}
+.process-step{
+  padding:44px 32px;
+  border-right:1px solid rgba(255,255,255,.07);
+  position:relative;
+}
+.process-step:last-child{border-right:none;}
+.process-num{
+  font-family:'Syne',sans-serif;font-size:13px;font-weight:800;
+  color:rgba(255,92,53,.4);letter-spacing:3px;margin-bottom:24px;
+}
+.process-title{font-size:17px;font-weight:700;margin-bottom:12px;}
+.process-desc{font-size:13px;color:rgba(234,234,234,.4);line-height:1.7;}
+.process-connector{
+  position:absolute;top:44px;right:-1px;
+  width:24px;height:2px;
+  background:linear-gradient(to right,rgba(255,92,53,.4),rgba(255,32,121,.4));
+}
 
-  /* CTA SECTION */
-  .kz-cta-section { padding: 100px 48px; text-align: center; position: relative; }
-  .kz-cta-glow {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px; height: 600px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,107,53,0.1), transparent 70%);
-    filter: blur(60px);
-  }
-  .kz-cta-section h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 5vw, 52px); font-weight: 700; margin-bottom: 20px;
-    position: relative; z-index: 1;
-  }
-  .kz-cta-section p {
-    color: rgba(232,230,225,0.5); margin-bottom: 40px;
-    font-size: 18px; max-width: 500px; margin: 0 auto 40px;
-    position: relative; z-index: 1;
-  }
-  .kz-cta-section .kz-btn { position: relative; z-index: 1; }
+/* ════════════════════════════
+   WHY KANDZ
+════════════════════════════ */
+.why-sec{background:rgba(255,255,255,.012);}
+.why-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:20px;
+}
+.why-card{
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:20px;padding:36px;
+  display:flex;gap:20px;align-items:flex-start;
+  transition:all .4s;
+}
+.why-card:hover{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.12);}
+.why-icon{
+  width:48px;height:48px;flex-shrink:0;border-radius:12px;
+  background:linear-gradient(135deg,rgba(255,92,53,.15),rgba(255,32,121,.15));
+  border:1px solid rgba(255,92,53,.2);
+  display:flex;align-items:center;justify-content:center;font-size:22px;
+}
+.why-title{font-size:16px;font-weight:700;margin-bottom:8px;}
+.why-desc{font-size:14px;color:rgba(234,234,234,.45);line-height:1.7;}
 
-  /* ANIMATIONS */
-  @keyframes kz-float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-  }
-  @keyframes kz-marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  @keyframes kz-fadeInUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .kz-animate { animation: kz-fadeInUp 0.8s cubic-bezier(0.23,1,0.32,1) forwards; }
-  .kz-d1 { animation-delay: 0.1s; opacity: 0; }
-  .kz-d2 { animation-delay: 0.25s; opacity: 0; }
-  .kz-d3 { animation-delay: 0.4s; opacity: 0; }
-  .kz-d4 { animation-delay: 0.55s; opacity: 0; }
+/* ════════════════════════════
+   TESTIMONIALS
+════════════════════════════ */
+.testi-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+.testi-card{
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:20px;padding:40px 36px;
+  position:relative;
+  transition:all .4s;
+}
+.testi-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.12);}
+.testi-stars{
+  display:flex;gap:4px;margin-bottom:24px;
+}
+.testi-stars span{font-size:14px;color:#FF5C35;}
+.testi-q{font-size:48px;font-family:'Playfair Display',serif;color:rgba(255,92,53,.12);line-height:1;margin-bottom:8px;}
+.testi-text{font-size:15px;line-height:1.8;color:rgba(234,234,234,.65);margin-bottom:28px;}
+.testi-divider{width:32px;height:1px;background:rgba(255,92,53,.3);margin-bottom:20px;}
+.testi-name{font-size:15px;font-weight:700;}
+.testi-role{font-size:13px;color:#FF5C35;margin-top:3px;}
 
-  .kz-fade-section {
-    transition: all 1s ease;
-    opacity: 0; transform: translateY(48px);
-  }
-  .kz-fade-section.kz-visible {
-    opacity: 1; transform: translateY(0);
-  }
+/* ════════════════════════════
+   ABOUT
+════════════════════════════ */
+.about-wrap{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.about-text h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,3.5vw,44px);font-weight:700;margin-bottom:28px;line-height:1.1;
+}
+.about-text p{color:rgba(234,234,234,.5);line-height:1.85;margin-bottom:18px;font-size:15px;}
+.about-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+.abadge{
+  padding:8px 20px;border-radius:100px;
+  border:1px solid rgba(255,255,255,.1);
+  font-size:13px;color:rgba(234,234,234,.55);font-weight:500;
+}
+.about-right{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+}
+.about-metric{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:18px;padding:28px 24px;
+  transition:all .4s;
+}
+.about-metric:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);}
+.about-metric-num{
+  font-family:'Syne',sans-serif;font-size:34px;font-weight:800;
+  background:linear-gradient(135deg,#FF5C35,#FF2079);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:6px;
+}
+.about-metric-label{font-size:13px;color:rgba(234,234,234,.45);line-height:1.5;}
 
-  /* ===== MOBILE RESPONSIVE ===== */
-  @media (max-width: 768px) {
-    .kz-section { padding: 60px 20px; }
-    .kz-cta-section { padding: 60px 20px; }
+/* ════════════════════════════
+   CTA
+════════════════════════════ */
+.cta-sec{
+  padding:140px 60px;text-align:center;position:relative;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 50%,rgba(255,92,53,.08),transparent),
+    radial-gradient(ellipse 40% 40% at 80% 20%,rgba(139,92,246,.07),transparent);
+}
+.cta-border{
+  max-width:800px;margin:0 auto;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:32px;padding:80px 60px;
+  background:rgba(255,255,255,.02);
+  backdrop-filter:blur(10px);
+  position:relative;z-index:1;
+}
+.cta-sec h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(32px,5vw,58px);font-weight:700;
+  margin-bottom:20px;line-height:1.1;
+}
+.cta-sec p{
+  color:rgba(234,234,234,.5);font-size:18px;
+  max-width:480px;margin:0 auto 44px;line-height:1.75;
+}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
 
-    .kz-hero { padding: 60px 20px 80px; min-height: 90vh; }
-    .kz-hero-orb1, .kz-hero-orb2 { width: 150px; height: 150px; }
+/* ════════════════════════════
+   FOOTER STRIP
+════════════════════════════ */
+.footer-strip{
+  padding:40px 60px;
+  border-top:1px solid rgba(255,255,255,.07);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
+}
+.footer-brand{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;}
+.footer-brand span{
+  background:linear-gradient(135deg,#FF5C35,#FF2079);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.footer-tagline{font-size:13px;color:rgba(234,234,234,.3);margin-top:4px;}
+.footer-links{display:flex;gap:32px;}
+.footer-links a{
+  font-size:14px;color:rgba(234,234,234,.45);text-decoration:none;font-weight:500;
+  transition:color .3s;
+}
+.footer-links a:hover{color:#FF5C35;}
+.footer-copy{font-size:13px;color:rgba(234,234,234,.25);}
 
-    .kz-hero-btns { flex-direction: column; align-items: center; }
-    .kz-btn, .kz-btn-outline { width: 100%; max-width: 300px; text-align: center; }
-    .kz-btn-lg { font-size: 16px; padding: 16px 32px; }
+/* ════════════════════════════
+   ANIMATIONS
+════════════════════════════ */
+@keyframes floatA{0%,100%{transform:translateY(0) rotate(0);}50%{transform:translateY(-28px) rotate(3deg);}}
+@keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(36px);}to{opacity:1;transform:translateY(0);}}
+.au{animation:fadeUp .9s cubic-bezier(.23,1,.32,1) both;}
+.d1{animation-delay:.1s;}.d2{animation-delay:.25s;}.d3{animation-delay:.4s;}.d4{animation-delay:.55s;}
 
-    .kz-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .kz-stat-card { padding: 24px 16px; }
-    .kz-stat-num { font-size: 32px; }
+.reveal{opacity:0;transform:translateY(44px);transition:opacity .9s cubic-bezier(.23,1,.32,1),transform .9s cubic-bezier(.23,1,.32,1);}
+.reveal.vis{opacity:1;transform:translateY(0);}
 
-    .kz-services-grid { grid-template-columns: 1fr; }
-    .kz-service-card { padding: 28px 24px; }
-
-    .kz-testimonials-grid { grid-template-columns: 1fr; }
-    .kz-testimonial-card { padding: 36px 28px; }
-
-    .kz-about-wrap { flex-direction: column; gap: 40px; }
-    .kz-about-text { flex: 1 1 auto; }
-    .kz-about-visual { flex: 1 1 auto; width: 100%; min-height: 280px; }
-
-    .kz-cta-glow { width: 300px; height: 300px; }
-
-    .kz-upwork-badge { font-size: 11px; padding: 6px 14px; }
-    .kz-section-header { margin-bottom: 40px; }
-  }
-
-  @media (max-width: 480px) {
-    .kz-stats-grid { grid-template-columns: 1fr 1fr; }
-    .kz-stat-num { font-size: 28px; }
-    .kz-stat-label { font-size: 14px; }
-
-    .kz-hero h1 { font-size: 32px; }
-    .kz-service-card { padding: 24px 20px; }
-    .kz-testimonial-card { padding: 32px 20px; }
-    .kz-badges { gap: 8px; }
-    .kz-badge { font-size: 12px; padding: 6px 14px; }
-  }
+/* ════════════════════════════
+   RESPONSIVE
+════════════════════════════ */
+@media(max-width:1024px){
+  .services-grid{grid-template-columns:repeat(2,1fr);}
+  .process-grid{grid-template-columns:repeat(2,1fr);}
+  .process-step:nth-child(2){border-right:none;}
+  .process-step:nth-child(3){border-top:1px solid rgba(255,255,255,.07);}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .stat-box:nth-child(2){border-right:none;}
+  .stat-box:nth-child(3){border-top:1px solid rgba(255,255,255,.07);}
+  .about-wrap{grid-template-columns:1fr;gap:48px;}
+}
+@media(max-width:768px){
+  .sec{padding:72px 24px;}
+  .stats-sec{padding:56px 24px;}
+  .cta-sec{padding:80px 24px;}
+  .cta-border{padding:52px 28px;}
+  .footer-strip{padding:32px 24px;flex-direction:column;text-align:center;}
+  .footer-links{justify-content:center;gap:20px;}
+  .hero{padding:80px 24px 110px;min-height:100vh;}
+  .hero-orb-a,.hero-orb-b{width:200px;height:200px;}
+  .hero-btns{flex-direction:column;align-items:center;}
+  .btn-main,.btn-ghost{width:100%;max-width:320px;text-align:center;}
+  .services-grid{grid-template-columns:1fr;}
+  .testi-grid{grid-template-columns:1fr;}
+  .why-grid{grid-template-columns:1fr;}
+  .process-grid{grid-template-columns:1fr;}
+  .process-step{border-right:none!important;border-top:1px solid rgba(255,255,255,.07);}
+  .process-step:first-child{border-top:none;}
+  .about-right{grid-template-columns:1fr 1fr;}
+  .sec-head h2{font-size:28px;}
+}
+@media(max-width:480px){
+  .hero h1{font-size:36px;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  .about-right{grid-template-columns:1fr 1fr;}
+  .svc-card{padding:28px 24px;}
+  .testi-card{padding:32px 24px;}
+  .why-card{flex-direction:column;gap:12px;}
+}
 </style>
 
-<div id="kandz-root">
-  <div class="kz-grain-overlay"></div>
+<div id="kw">
 
-  <!-- HERO -->
-  <section class="kz-hero" id="kz-top">
-    <div class="kz-hero-orb1"></div>
-    <div class="kz-hero-orb2"></div>
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-orb hero-orb-a"></div>
+    <div class="hero-orb hero-orb-b"></div>
 
-    <div class="kz-animate kz-d1" style="margin-bottom:32px;">
-      <div class="kz-upwork-badge"><span>●</span> Top Rated Plus on Upwork</div>
+    <div class="au d1">
+      <div class="hero-badge">
+        <span></span> Top Rated Plus · Upwork
+      </div>
     </div>
 
-    <h1 class="kz-animate kz-d2">
+    <h1 class="au d2">
       We Execute<br>
-      <span class="kz-text-gradient">Your Growth</span>
+      <em class="grad-text" style="font-style:normal;">Your Growth</em>
     </h1>
 
-    <p class="kz-animate kz-d3">
-      From lead generation to sales execution, marketing to operations — we're the team that scales your business while you focus on strategy.
+    <p class="hero-sub au d3">
+      From lead generation to sales execution — KANDZ is the full-service growth team that scales your business while you focus on strategy.
     </p>
 
-    <div class="kz-hero-btns kz-animate kz-d4">
-      <a href="https://calendly.com/syed-kandz" target="_blank" class="kz-btn">Book a Free Consultation →</a>
-      <a href="#kz-services" class="kz-btn-outline">View Our Work</a>
+    <div class="hero-btns au d4">
+      <a href="https://calendly.com/syed-kandz" target="_blank" class="btn-main">Book Free Consultation →</a>
+      <a href="#kw-services" class="btn-ghost">Explore Services</a>
     </div>
 
-    <div class="kz-scroll-indicator">
-      <span>SCROLL</span>
-      <div class="kz-scroll-line"></div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <div class="kz-marquee-wrap">
-    <div class="kz-marquee-track" id="kzMarquee">
-      <span class="kz-marquee-item">Lead Generation <span class="kz-marquee-dot">✦</span></span>
-      <span class="kz-marquee-item">Sales Execution <span class="kz-marquee-dot">✦</span></span>
-      <span class="kz-marquee-item">Call Center <span class="kz-marquee-dot">✦</span></span>
-      <span class="kz-marquee-item">SEO & Marketing <span class="kz-marquee-dot">✦</span></span>
-      <span class="kz-marquee-item">Google & Meta Ads <span class="kz-marquee-dot">✦</span></span>
-      <span class="kz-marquee-item">Admin Support <span class="kz-marquee-dot">✦</span></span>
-      <span class="kz-marquee-item">Creative Design <span class="kz-marquee-dot">✦</span></span>
-      <span class="kz-marquee-item">CRM Management <span class="kz-marquee-dot">✦</span></span>
-      <span class="kz-marquee-item">Virtual Assistance <span class="kz-marquee-dot">✦</span></span>
-      <span class="kz-marquee-item">Lead Generation <span class="kz-marquee-dot">✦</span></span>
-      <span class="kz-marquee-item">Sales Execution <span class="kz-marquee-dot">✦</span></span>
-      <span class="kz-marquee-item">Call Center <span class="kz-marquee-dot">✦</span></span>
-      <span class="kz-marquee-item">SEO & Marketing <span class="kz-marquee-dot">✦</span></span>
-      <span class="kz-marquee-item">Google & Meta Ads <span class="kz-marquee-dot">✦</span></span>
-      <span class="kz-marquee-item">Admin Support <span class="kz-marquee-dot">✦</span></span>
-      <span class="kz-marquee-item">Creative Design <span class="kz-marquee-dot">✦</span></span>
-      <span class="kz-marquee-item">CRM Management <span class="kz-marquee-dot">✦</span></span>
-      <span class="kz-marquee-item">Virtual Assistance <span class="kz-marquee-dot">✦</span></span>
+  <!-- ═══ MARQUEE ═══ -->
+  <div class="mq-wrap">
+    <div class="mq-track" id="mqTrack">
+      <span class="mq-item">Lead Generation</span>
+      <span class="mq-item accent">✦</span>
+      <span class="mq-item">Sales Execution</span>
+      <span class="mq-item accent">✦</span>
+      <span class="mq-item">Call Center</span>
+      <span class="mq-item accent">✦</span>
+      <span class="mq-item">Google & Meta Ads</span>
+      <span class="mq-item accent">✦</span>
+      <span class="mq-item">SEO & Marketing</span>
+      <span class="mq-item accent">✦</span>
+      <span class="mq-item">Creative Design</span>
+      <span class="mq-item accent">✦</span>
+      <span class="mq-item">CRM Management</span>
+      <span class="mq-item accent">✦</span>
+      <span class="mq-item">Virtual Assistance</span>
+      <span class="mq-item accent">✦</span>
+      <span class="mq-item">Lead Generation</span>
+      <span class="mq-item accent">✦</span>
+      <span class="mq-item">Sales Execution</span>
+      <span class="mq-item accent">✦</span>
+      <span class="mq-item">Call Center</span>
+      <span class="mq-item accent">✦</span>
+      <span class="mq-item">Google & Meta Ads</span>
+      <span class="mq-item accent">✦</span>
+      <span class="mq-item">SEO & Marketing</span>
+      <span class="mq-item accent">✦</span>
+      <span class="mq-item">Creative Design</span>
+      <span class="mq-item accent">✦</span>
+      <span class="mq-item">CRM Management</span>
+      <span class="mq-item accent">✦</span>
+      <span class="mq-item">Virtual Assistance</span>
+      <span class="mq-item accent">✦</span>
     </div>
   </div>
 
-  <!-- STATS -->
-  <section class="kz-section" id="kz-results">
-    <div class="kz-container kz-fade-section" id="kzStats">
-      <div class="kz-section-header">
-        <span class="kz-section-label">Our Track Record</span>
-        <h2>Numbers That <span class="kz-text-gradient">Speak</span></h2>
+  <!-- ═══ STATS ═══ -->
+  <div class="stats-sec reveal" id="statsSection">
+    <div class="wrap">
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-num" id="c1">0+</div>
+          <div class="stat-label">Team Members</div>
+          <div class="stat-sub">Skilled professionals</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="c2">0+</div>
+          <div class="stat-label">Contracts Completed</div>
+          <div class="stat-sub">Delivered on Upwork</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="c3">0+</div>
+          <div class="stat-label">Hours Logged</div>
+          <div class="stat-sub">On Upwork platform</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="c4">0%</div>
+          <div class="stat-label">Client Satisfaction</div>
+          <div class="stat-sub">5-star rated reviews</div>
+        </div>
       </div>
-      <div class="kz-stats-grid">
-        <div class="kz-stat-card">
-          <div class="kz-stat-num" id="kzCount1">0+</div>
-          <div class="kz-stat-label">Team Members</div>
-          <div class="kz-stat-sub">Skilled professionals</div>
+    </div>
+  </div>
+
+  <!-- ═══ SERVICES ═══ -->
+  <section class="sec services-sec" id="kw-services">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">What We Do</span>
+        <h2>Full-Stack <span class="grad-text">Growth Services</span></h2>
+        <p>Everything your business needs to scale — one team, zero hassle.</p>
+      </div>
+      <div class="services-grid reveal">
+        <div class="svc-card">
+          <div class="svc-icon">🎯</div>
+          <div class="svc-name" style="color:#FF5C35;">Lead Generation & Sales</div>
+          <div class="svc-desc">End-to-end lead gen, appointment setting, cold calling, and sales closing for B2B & B2C. We don't just find leads — we convert them into revenue.</div>
+          <div class="svc-tag">Most Popular</div>
         </div>
-        <div class="kz-stat-card">
-          <div class="kz-stat-num" id="kzCount2">0+</div>
-          <div class="kz-stat-label">Total Contracts</div>
-          <div class="kz-stat-sub">Successfully delivered</div>
+        <div class="svc-card">
+          <div class="svc-icon">📞</div>
+          <div class="svc-name" style="color:#00C9A7;">Call & Contact Center</div>
+          <div class="svc-desc">24/7 inbound & outbound support. Phone, email, live chat — your customers get instant, professional assistance round the clock.</div>
+          <div class="svc-tag">24/7 Service</div>
         </div>
-        <div class="kz-stat-card">
-          <div class="kz-stat-num" id="kzCount3">0+</div>
-          <div class="kz-stat-label">Hours on Upwork</div>
-          <div class="kz-stat-sub">Of dedicated work</div>
+        <div class="svc-card">
+          <div class="svc-icon">📈</div>
+          <div class="svc-name" style="color:#8B5CF6;">SEO & Digital Marketing</div>
+          <div class="svc-desc">Dominate search rankings with data-driven SEO, content strategy, and link building using Semrush & Ahrefs enterprise tools.</div>
+          <div class="svc-tag">Data Driven</div>
         </div>
-        <div class="kz-stat-card">
-          <div class="kz-stat-num" id="kzCount4">0%</div>
-          <div class="kz-stat-label">Client Satisfaction</div>
-          <div class="kz-stat-sub">5-star reviews</div>
+        <div class="svc-card">
+          <div class="svc-icon">🎨</div>
+          <div class="svc-name" style="color:#FF2079;">Creative & Design</div>
+          <div class="svc-desc">Brand identity, graphic design, video editing, and motion graphics that make your brand unforgettable and conversion-ready.</div>
+          <div class="svc-tag">Visual Impact</div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon">💰</div>
+          <div class="svc-name" style="color:#00A3FF;">Google & Meta Ads</div>
+          <div class="svc-desc">ROI-focused paid campaigns on Google, Facebook & Instagram. Every dollar tracked, every conversion optimized for maximum returns.</div>
+          <div class="svc-tag">ROI Focused</div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon">⚡</div>
+          <div class="svc-name" style="color:#F59E0B;">Admin & Virtual Assistance</div>
+          <div class="svc-desc">Executive VAs, data entry, CRM management, calendar handling — we become your dedicated remote operations backbone.</div>
+          <div class="svc-tag">Operations</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="kz-section" id="kz-services" style="padding-top:60px; padding-bottom:80px;">
-    <div class="kz-container kz-fade-section" id="kzServices">
-      <div class="kz-section-header">
-        <span class="kz-section-label">What We Do</span>
-        <h2>Full-Stack <span class="kz-text-gradient">Growth Services</span></h2>
-        <p style="color:rgba(232,230,225,0.5); margin-top:16px; max-width:500px; margin-left:auto; margin-right:auto; line-height:1.7;">
-          Everything you need to scale — under one roof, one team, one partner.
-        </p>
+  <!-- ═══ PROCESS ═══ -->
+  <section class="sec process-sec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">How We Work</span>
+        <h2>Simple. Fast. <span class="grad-text">Results.</span></h2>
+        <p>From discovery to execution in days, not months.</p>
       </div>
-      <div class="kz-services-grid">
-        <div class="kz-service-card">
-          <div class="kz-service-icon">🎯</div>
-          <div class="kz-service-title" style="color:#FF6B35;">Lead Generation & Sales</div>
-          <div class="kz-service-desc">End-to-end lead gen, appointment setting, cold calling, and sales closing for B2B & B2C. We don't just find leads — we convert them.</div>
+      <div class="process-grid reveal">
+        <div class="process-step">
+          <div class="process-num">01</div>
+          <div class="process-title">Discovery Call</div>
+          <div class="process-desc">We understand your business goals, target market, and current challenges in a free 30-minute strategy session.</div>
         </div>
-        <div class="kz-service-card">
-          <div class="kz-service-icon">📞</div>
-          <div class="kz-service-title" style="color:#4ECDC4;">Call & Contact Center</div>
-          <div class="kz-service-desc">24/7 inbound & outbound support. Phone, email, chat — your customers get instant, professional assistance round the clock.</div>
+        <div class="process-step">
+          <div class="process-num">02</div>
+          <div class="process-title">Custom Strategy</div>
+          <div class="process-desc">We design a tailored execution plan — right services, right team size, right timelines, right budget.</div>
         </div>
-        <div class="kz-service-card">
-          <div class="kz-service-icon">📈</div>
-          <div class="kz-service-title" style="color:#7B68EE;">SEO & Digital Marketing</div>
-          <div class="kz-service-desc">Dominate search rankings with data-driven SEO, content marketing, and strategic link building using Semrush & Ahrefs.</div>
+        <div class="process-step">
+          <div class="process-num">03</div>
+          <div class="process-title">Team Assembly</div>
+          <div class="process-desc">Dedicated professionals assigned to your project, briefed, trained, and ready to hit the ground running.</div>
         </div>
-        <div class="kz-service-card">
-          <div class="kz-service-icon">🎨</div>
-          <div class="kz-service-title" style="color:#FF1493;">Creative & Design</div>
-          <div class="kz-service-desc">Brand identity, graphic design, video editing, and motion graphics that make your brand unforgettable.</div>
-        </div>
-        <div class="kz-service-card">
-          <div class="kz-service-icon">💻</div>
-          <div class="kz-service-title" style="color:#00CED1;">Google & Meta Ads</div>
-          <div class="kz-service-desc">ROI-focused paid campaigns on Google, Facebook & Instagram. Every dollar tracked, every conversion optimized.</div>
-        </div>
-        <div class="kz-service-card">
-          <div class="kz-service-icon">⚡</div>
-          <div class="kz-service-title" style="color:#FFD700;">Admin & Virtual Assistance</div>
-          <div class="kz-service-desc">Executive VAs, data entry, CRM management, calendar handling — we become your remote operations team.</div>
+        <div class="process-step">
+          <div class="process-num">04</div>
+          <div class="process-title">Scale & Grow</div>
+          <div class="process-desc">We execute, measure, optimize, and report. You see real results, not just activity metrics.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section class="kz-section" id="kz-testimonials" style="padding-top:60px; padding-bottom:80px;">
-    <div class="kz-container kz-fade-section" id="kzTestimonials">
-      <div class="kz-section-header">
-        <span class="kz-section-label">Client Love</span>
-        <h2>Don't Take Our Word. <span class="kz-text-gradient">Take Theirs.</span></h2>
+  <!-- ═══ WHY KANDZ ═══ -->
+  <section class="sec why-sec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Why Choose Us</span>
+        <h2>The KANDZ <span class="grad-text">Difference</span></h2>
+        <p>We're not just a vendor. We're your growth execution partner.</p>
       </div>
-      <div class="kz-testimonials-grid">
-        <div class="kz-testimonial-card">
-          <p class="kz-testimonial-text">"The expert team KANDZ assembled delivered truly exceptional results in support of our critical lead generation efforts."</p>
-          <div class="kz-testimonial-client">Structural & MEP Design Firm</div>
-          <div class="kz-testimonial-role">Lead Generation Operations</div>
-        </div>
-        <div class="kz-testimonial-card">
-          <p class="kz-testimonial-text">"The team showed thorough understanding of SEO best practices and Google AdWords at the expert level."</p>
-          <div class="kz-testimonial-client">GDI Engineering</div>
-          <div class="kz-testimonial-role">Google Ads & SEO</div>
-        </div>
-        <div class="kz-testimonial-card">
-          <p class="kz-testimonial-text">"They assembled a team that provided outstanding customer service. The level of experience was simply remarkable."</p>
-          <div class="kz-testimonial-client">Enterprise Client</div>
-          <div class="kz-testimonial-role">Customer Support</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="kz-section" id="kz-about" style="padding-top:60px; padding-bottom:80px;">
-    <div class="kz-container kz-fade-section" id="kzAbout">
-      <div class="kz-about-wrap">
-        <div class="kz-about-text">
-          <span class="kz-section-label">About KANDZ</span>
-          <h2>Your Growth Team,<br><span class="kz-text-gradient">Based in Pakistan,</span><br>Serving the World</h2>
-          <p>Founded in 2019, KANDZ Communications has grown from a small call center to a full-service growth execution agency. With 50+ skilled professionals, we've completed 200+ contracts on Upwork with a Top Rated Plus badge.</p>
-          <p>90% of our team are university graduates. Many have lived in the USA and Europe, giving us deep cultural understanding for targeting specific markets globally.</p>
-          <div class="kz-badges">
-            <span class="kz-badge">Upwork Top Rated Plus</span>
-            <span class="kz-badge">50+ Team Members</span>
-            <span class="kz-badge">Since 2019</span>
-            <span class="kz-badge">Global Clients</span>
+      <div class="why-grid reveal">
+        <div class="why-card">
+          <div class="why-icon">🏆</div>
+          <div>
+            <div class="why-title">Upwork Top Rated Plus</div>
+            <div class="why-desc">Verified by 200+ client reviews. Top Rated Plus badge reflects our consistent 5-star delivery and professionalism.</div>
           </div>
         </div>
-        <div class="kz-about-visual">
-          <div class="kz-about-logo-icon">K</div>
-          <div class="kz-about-logo-text">KANDZ</div>
-          <div class="kz-about-logo-sub">Communications</div>
+        <div class="why-card">
+          <div class="why-icon">🌍</div>
+          <div>
+            <div class="why-title">Global Market Understanding</div>
+            <div class="why-desc">90% of our team are university graduates. Many have lived in the USA and Europe — we understand your market deeply.</div>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">⚡</div>
+          <div>
+            <div class="why-title">Full-Stack Under One Roof</div>
+            <div class="why-desc">Sales, marketing, design, support, admin — no agency-hopping. One partner for everything your business needs.</div>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">📊</div>
+          <div>
+            <div class="why-title">Results You Can Measure</div>
+            <div class="why-desc">Weekly reporting, transparent KPIs, and data-backed decisions. You always know exactly what you're paying for.</div>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🔒</div>
+          <div>
+            <div class="why-title">Long-Term Partnerships</div>
+            <div class="why-desc">60%+ of our clients have been with us for 2+ years. We grow with your business, not just complete a project.</div>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🚀</div>
+          <div>
+            <div class="why-title">Rapid Deployment</div>
+            <div class="why-desc">Ready team, tested systems, proven playbooks. From agreement to execution in 48–72 hours, not weeks.</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="kz-cta-section">
-    <div class="kz-cta-glow"></div>
-    <h2>Ready to <span class="kz-text-gradient">Scale?</span></h2>
-    <p>Book a free consultation. Let's discuss how we can become your growth execution team.</p>
-    <a href="https://calendly.com/syed-kandz" target="_blank" class="kz-btn kz-btn-lg">Book Your Free Call →</a>
+  <!-- ═══ TESTIMONIALS ═══ -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Client Testimonials</span>
+        <h2>Don't Take Our Word. <span class="grad-text">Take Theirs.</span></h2>
+      </div>
+      <div class="testi-grid reveal">
+        <div class="testi-card">
+          <div class="testi-stars">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <div class="testi-q">"</div>
+          <p class="testi-text">The expert team KANDZ assembled delivered truly exceptional results in support of our critical lead generation efforts. Highly professional throughout.</p>
+          <div class="testi-divider"></div>
+          <div class="testi-name">Structural & MEP Design Firm</div>
+          <div class="testi-role">Lead Generation Operations</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <div class="testi-q">"</div>
+          <p class="testi-text">The team showed thorough understanding of SEO best practices and Google AdWords at the expert level. I've worked with 5+ agencies — KANDZ is the best.</p>
+          <div class="testi-divider"></div>
+          <div class="testi-name">GDI Engineering</div>
+          <div class="testi-role">Google Ads & SEO Strategy</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <div class="testi-q">"</div>
+          <p class="testi-text">They assembled a team that provided outstanding customer service support. The level of experience and communication was simply remarkable. Highly recommend.</p>
+          <div class="testi-divider"></div>
+          <div class="testi-name">Global Enterprise Client</div>
+          <div class="testi-role">Customer Support Operations</div>
+        </div>
+      </div>
+    </div>
   </section>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section class="sec" style="background:rgba(255,255,255,.012);" id="kw-about">
+    <div class="wrap">
+      <div class="about-wrap reveal">
+        <div class="about-text">
+          <span class="eyebrow">About KANDZ</span>
+          <h2>Your Growth Team, Based in Pakistan,<br><span class="grad-text">Serving the World</span></h2>
+          <p>Founded in 2019, KANDZ Communications has grown from a small call center operation to a full-service growth execution agency trusted by clients across the USA, UK, Canada, and Europe.</p>
+          <p>With 50+ skilled professionals, we have completed 200+ contracts on Upwork earning a Top Rated Plus badge — a distinction held by less than 3% of agencies on the platform.</p>
+          <p>90% of our team are university graduates. Many have lived in the USA and Europe, giving us deep cultural and market intelligence to serve your audience effectively.</p>
+          <div class="about-badges">
+            <span class="abadge">Upwork Top Rated Plus</span>
+            <span class="abadge">50+ Professionals</span>
+            <span class="abadge">Founded 2019</span>
+            <span class="abadge">Global Clients</span>
+            <span class="abadge">USA · UK · Canada</span>
+          </div>
+        </div>
+        <div class="about-right">
+          <div class="about-metric">
+            <div class="about-metric-num">50+</div>
+            <div class="about-metric-label">Skilled team members</div>
+          </div>
+          <div class="about-metric">
+            <div class="about-metric-num">200+</div>
+            <div class="about-metric-label">Contracts completed</div>
+          </div>
+          <div class="about-metric">
+            <div class="about-metric-num">17K+</div>
+            <div class="about-metric-label">Hours on Upwork</div>
+          </div>
+          <div class="about-metric">
+            <div class="about-metric-num">100%</div>
+            <div class="about-metric-label">Client satisfaction rate</div>
+          </div>
+          <div class="about-metric" style="grid-column:span 2;">
+            <div class="about-metric-num" style="font-size:24px;">Since 2019</div>
+            <div class="about-metric-label">5+ years of proven excellence in global markets, consistently delivering results that matter.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="cta-sec">
+    <div class="cta-border reveal">
+      <span class="eyebrow" style="display:block;text-align:center;margin-bottom:16px;">Ready to Scale?</span>
+      <h2>Let's Build Your<br><span class="grad-text">Growth Engine</span></h2>
+      <p>Book a free 30-minute strategy call. No commitment. Just clarity on how we can help you grow.</p>
+      <div class="cta-btns">
+        <a href="https://calendly.com/syed-kandz" target="_blank" class="btn-main lg">Book Free Strategy Call →</a>
+        <a href="mailto:info@kandzcomms.com" class="btn-ghost">Send Us a Message</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER STRIP ═══ -->
+  <div class="footer-strip">
+    <div>
+      <div class="footer-brand"><span>KANDZ</span> Communications</div>
+      <div class="footer-tagline">Your Growth Execution Partner · Since 2019</div>
+    </div>
+    <div class="footer-links">
+      <a href="#kw-services">Services</a>
+      <a href="#kw-about">About</a>
+      <a href="https://calendly.com/syed-kandz" target="_blank">Book a Call</a>
+    </div>
+    <div class="footer-copy">© 2025 KANDZ Communications. All rights reserved.</div>
+  </div>
 
 </div>
 
 <script>
-  // Scroll animations
-  var kzFadeSections = document.querySelectorAll('.kz-fade-section');
-  var kzObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('kz-visible');
-      }
-    });
-  }, { threshold: 0.15 });
-  kzFadeSections.forEach(function(el) { kzObserver.observe(el); });
+(function(){
+  // Scroll reveal
+  var els=document.querySelectorAll('.reveal');
+  var ro=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('vis');});
+  },{threshold:0.12});
+  els.forEach(function(el){ro.observe(el);});
 
-  // Counter animation
-  var kzCounted = false;
-  var kzStatsEl = document.getElementById('kzStats');
-  var kzCountObserver = new IntersectionObserver(function(entries) {
-    if (entries[0].isIntersecting && !kzCounted) {
-      kzCounted = true;
-      var targets = { c1: 50, c2: 200, c3: 17500, c4: 100 };
-      var duration = 2000, steps = 60, interval = duration / steps, step = 0;
-      var timer = setInterval(function() {
+  // Counter
+  var counted=false;
+  var statSec=document.getElementById('statsSection');
+  var co=new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting&&!counted){
+      counted=true;
+      var t={c1:50,c2:200,c3:17500,c4:100};
+      var dur=2200,steps=70,inv=dur/steps,step=0;
+      var id=setInterval(function(){
         step++;
-        var ease = 1 - Math.pow(1 - step / steps, 3);
-        document.getElementById('kzCount1').textContent = Math.round(targets.c1 * ease) + '+';
-        document.getElementById('kzCount2').textContent = Math.round(targets.c2 * ease) + '+';
-        document.getElementById('kzCount3').textContent = Math.round(targets.c3 * ease).toLocaleString() + '+';
-        document.getElementById('kzCount4').textContent = Math.round(targets.c4 * ease) + '%';
-        if (step >= steps) clearInterval(timer);
-      }, interval);
+        var ease=1-Math.pow(1-step/steps,3);
+        document.getElementById('c1').textContent=Math.round(t.c1*ease)+'+';
+        document.getElementById('c2').textContent=Math.round(t.c2*ease)+'+';
+        document.getElementById('c3').textContent=Math.round(t.c3*ease).toLocaleString()+'+';
+        document.getElementById('c4').textContent=Math.round(t.c4*ease)+'%';
+        if(step>=steps)clearInterval(id);
+      },inv);
     }
-  }, { threshold: 0.3 });
-  if (kzStatsEl) kzCountObserver.observe(kzStatsEl);
+  },{threshold:0.2});
+  if(statSec)co.observe(statSec);
 
-  // Smooth scroll for nav links
-  document.querySelectorAll('a[href^="#kz-"]').forEach(function(a) {
-    a.addEventListener('click', function(e) {
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#kw-"]').forEach(function(a){
+    a.addEventListener('click',function(e){
       e.preventDefault();
-      var target = document.querySelector(this.getAttribute('href'));
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      var t=document.querySelector(this.getAttribute('href'));
+      if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
     });
   });
+})();
 </script>
