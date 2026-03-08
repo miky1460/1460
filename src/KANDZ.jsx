@@ -271,6 +271,27 @@ const KANDZ = () => {
             width: 100% !important; text-align: center !important;
             box-sizing: border-box !important;
           }
+
+          /* Prevent ALL horizontal overflow */
+          * { max-width: 100%; box-sizing: border-box; }
+          img, svg, video { max-width: 100%; }
+
+          /* About section: stack vertically, fix gap */
+          .about-flex { flex-direction: column !important; gap: 32px !important; }
+          .about-text { flex: 1 1 100% !important; min-width: 0 !important; width: 100% !important; }
+          .about-logo { flex: 1 1 100% !important; min-width: 0 !important; width: 100% !important; min-height: 220px !important; }
+
+          /* Stats: 2 columns on mobile */
+          .stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
+
+          /* Services: 1 column */
+          .services-grid { grid-template-columns: 1fr !important; }
+
+          /* Testimonials: 1 column */
+          .testimonials-grid { grid-template-columns: 1fr !important; }
+
+          /* Footer stack */
+          .footer-inner > div { flex-direction: column !important; }
         }
       `}</style>
 
@@ -363,7 +384,7 @@ const KANDZ = () => {
               Numbers That <span className="text-gradient">Speak</span>
             </h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 24 }}>
+          <div className="stats-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 24 }}>
             {[
               { num: `${counts.employees}+`, label: "Team Members", sub: "Skilled professionals" },
               { num: `${counts.contracts}+`, label: "Total Contracts", sub: "Successfully delivered" },
@@ -393,7 +414,7 @@ const KANDZ = () => {
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 20 }}>
+          <div className="services-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 20 }}>
             {services.map((service, i) => (
               <div
                 key={i}
@@ -424,7 +445,7 @@ const KANDZ = () => {
               Don't Take Our Word. <span className="text-gradient">Take Theirs.</span>
             </h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
+          <div className="testimonials-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
             {testimonials.map((t, i) => (
               <div key={i} className="testimonial-card">
                 <p style={{ fontSize: 15, lineHeight: 1.8, color: "rgba(232,230,225,0.7)", marginBottom: 24, position: "relative", zIndex: 1 }}>
@@ -442,8 +463,8 @@ const KANDZ = () => {
 
       {/* About Section */}
       <section id="about" data-animate style={{ padding: "80px 48px 100px" }}>
-        <div className={sectionClass("about")} style={{ maxWidth: 1100, margin: "0 auto", display: "flex", gap: 60, alignItems: "center", flexWrap: "wrap" }}>
-          <div style={{ flex: "1 1 400px" }}>
+        <div className={`${sectionClass("about")} about-flex`} style={{ maxWidth: 1100, margin: "0 auto", display: "flex", gap: 60, alignItems: "center", flexWrap: "wrap" }}>
+          <div className="about-text" style={{ flex: "1 1 400px" }}>
             <span className="section-label">About KANDZ</span>
             <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 600, marginBottom: 24 }}>
               Your Growth Team,<br /><span className="text-gradient">Based in Pakistan,</span><br />Serving the World
@@ -460,7 +481,7 @@ const KANDZ = () => {
               ))}
             </div>
           </div>
-          <div style={{ flex: "1 1 300px", minHeight: 400, borderRadius: 24, background: "linear-gradient(135deg, rgba(255,107,53,0.1), rgba(123,104,238,0.1))", border: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 16 }}>
+          <div className="about-logo" style={{ flex: "1 1 300px", minHeight: 400, borderRadius: 24, background: "linear-gradient(135deg, rgba(255,107,53,0.1), rgba(123,104,238,0.1))", border: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 16 }}>
             <div style={{ width: 80, height: 80, borderRadius: 20, background: "linear-gradient(135deg, #FF6B35, #FF1493)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 36, fontFamily: "'Syne', sans-serif", fontWeight: 800 }}>K</div>
             <div style={{ fontFamily: "'Syne', sans-serif", fontSize: 28, fontWeight: 700 }}>KANDZ</div>
             <div style={{ fontSize: 13, letterSpacing: 3, color: "rgba(232,230,225,0.4)", textTransform: "uppercase" }}>Communications</div>
