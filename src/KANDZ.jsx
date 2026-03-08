@@ -253,7 +253,7 @@ const KANDZ = () => {
           <a href="#results" className="nav-link">Results</a>
           <a href="#testimonials" className="nav-link">Testimonials</a>
           <a href="#about" className="nav-link">About</a>
-          <a href="https://calendly.com/syed-kandz" target="_blank" rel="noopener" className="cta-button" style={{ padding: "10px 28px", fontSize: 14, textDecoration: "none" }}>Book a Call</a>
+          <button className="cta-button" style={{ padding: "10px 28px", fontSize: 14 }}>Book a Call</button>
         </div>
         <button className="hide-mobile" style={{ display: "none", background: "none", border: "none", color: "#E8E6E1", fontSize: 24, cursor: "pointer" }} onClick={() => setIsMenuOpen(!isMenuOpen)}>☰</button>
       </nav>
@@ -281,7 +281,7 @@ const KANDZ = () => {
         </p>
 
         <div className="animate-in delay-4" style={{ display: "flex", gap: 16, flexWrap: "wrap", justifyContent: "center" }}>
-          <a href="https://calendly.com/syed-kandz" target="_blank" rel="noopener" className="cta-button" style={{ textDecoration: "none" }}>Book a Free Consultation →</a>
+          <button className="cta-button">Book a Free Consultation →</button>
           <button className="cta-outline">View Our Work</button>
         </div>
 
