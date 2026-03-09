@@ -67,12 +67,58 @@
 html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
-  background: var(--bg);
-  color: var(--text);
+  background: var(--bg) !important;
+  color: var(--text) !important;
   font-family: var(--font-body);
   line-height: 1.65;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Squarespace override protection */
+html body,
+html body #sqs-site-wrapper,
+html body .Index,
+html body .Index-page,
+html body .sqs-block-content,
+html body article,
+html body section {
+  background: transparent !important;
+}
+
+#kandz-root {
+  background: #0B0B12 !important;
+  color: #F2EFE9 !important;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Force text colors inside kandz-root to override Squarespace */
+#kandz-root p,
+#kandz-root li,
+#kandz-root span:not(.gradient-text):not(.nav-logo span),
+#kandz-root label {
+  color: inherit !important;
+}
+
+#kandz-root h1,
+#kandz-root h2,
+#kandz-root h3,
+#kandz-root h4,
+#kandz-root h5,
+#kandz-root h6 {
+  color: #F2EFE9 !important;
+}
+
+#kandz-root a {
+  color: inherit;
+}
+
+/* Prevent Squarespace from adding white/light backgrounds to blocks */
+#kandz-root .sqs-block,
+#kandz-root .sqs-block-content {
+  background: transparent !important;
+  color: inherit !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1400,6 +1446,7 @@ section { position: relative; }
 </style>
 </head>
 <body>
+<div id="kandz-root">
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="grain" aria-hidden="true"></div>
@@ -2873,5 +2920,6 @@ observeRevealElements();
 animateMetricBars();
 startCounters();
 </script>
+</div><!-- /#kandz-root -->
 </body>
 </html>
