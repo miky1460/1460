@@ -354,10 +354,95 @@ body,.sqs-layout,.sqs-row,.sqs-col-12,.sqs-block,.sqs-block-content,
 }
 .footer-links a:hover{color:#22C55E;}
 .footer-copy{font-size:13px;color:rgba(220,252,231,.2);}
+/* ════════════════════════════
+   NAVBAR
+════════════════════════════ */
+.kw-nav{
+  position:fixed;top:0;left:0;right:0;
+  height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;
+  background:rgba(4,10,4,.85);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(34,197,94,.1);
+  z-index:99999;
+}
+.kw-nav-logo{
+  font-family:'Syne',sans-serif;font-size:20px;font-weight:800;
+  color:#DCFCE7;text-decoration:none;white-space:nowrap;
+}
+.kw-nav-logo span{
+  background:linear-gradient(135deg,#22C55E,#84CC16);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.kw-nav-links{
+  display:flex;align-items:center;gap:4px;
+  list-style:none;
+}
+.kw-nav-links a{
+  font-size:14px;font-weight:500;color:rgba(220,252,231,.55);
+  text-decoration:none;padding:8px 14px;border-radius:8px;
+  transition:all .25s;
+}
+.kw-nav-links a:hover,.kw-nav-links a.active{
+  color:#DCFCE7;background:rgba(34,197,94,.08);
+}
+.kw-nav-cta{
+  background:linear-gradient(135deg,#16A34A,#22C55E);
+  color:#fff !important;
+  padding:9px 22px !important;border-radius:100px !important;
+  font-weight:700 !important;font-size:13px !important;
+  letter-spacing:.3px;
+  box-shadow:0 2px 16px rgba(34,197,94,.25);
+}
+.kw-nav-cta:hover{
+  background:rgba(34,197,94,.08) !important;
+  color:#fff !important;
+  box-shadow:0 4px 24px rgba(34,197,94,.4) !important;
+  transform:translateY(-1px);
+}
+/* hamburger */
+.kw-hamburger{
+  display:none;flex-direction:column;gap:5px;cursor:pointer;
+  background:none;border:none;padding:6px;
+}
+.kw-hamburger span{
+  display:block;width:24px;height:2px;
+  background:#DCFCE7;border-radius:2px;transition:all .3s;
+}
+/* mobile menu */
+.kw-mobile-menu{
+  display:none;
+  position:fixed;top:68px;left:0;right:0;
+  background:rgba(4,10,4,.97);
+  border-bottom:1px solid rgba(34,197,94,.1);
+  padding:16px 24px 24px;
+  z-index:99998;
+  flex-direction:column;gap:4px;
+}
+.kw-mobile-menu.open{display:flex;}
+.kw-mobile-menu a{
+  font-size:15px;font-weight:500;color:rgba(220,252,231,.6);
+  text-decoration:none;padding:12px 16px;border-radius:10px;
+  transition:all .2s;
+}
+.kw-mobile-menu a:hover{color:#DCFCE7;background:rgba(34,197,94,.08);}
+.kw-mobile-menu .kw-nav-cta{
+  margin-top:8px;text-align:center;
+  background:linear-gradient(135deg,#16A34A,#22C55E) !important;
+  color:#fff !important;padding:13px 22px !important;
+  border-radius:100px !important;font-weight:700 !important;
+}
+@media(max-width:820px){
+  .kw-nav-links{display:none;}
+  .kw-hamburger{display:flex;}
+  .kw-nav{padding:0 20px;}
+}
+
 /* HERO SOCIALS TOP-RIGHT */
 .hero-socials{
   position:fixed !important;
-  top:100px !important;
+  top:78px !important;
   right:24px !important;
   left:auto !important;
   bottom:auto !important;
@@ -435,8 +520,32 @@ body,.sqs-layout,.sqs-row,.sqs-col-12,.sqs-block,.sqs-block-content,
 
 <div id="kw">
 
+  <!-- ═══ NAVBAR ═══ -->
+  <nav class="kw-nav">
+    <a href="#kw" class="kw-nav-logo"><span>KANDZ</span> Communications</a>
+    <ul class="kw-nav-links">
+      <li><a href="#kw" class="active">Home</a></li>
+      <li><a href="#kw-industries">Industries</a></li>
+      <li><a href="#kw-services">Services</a></li>
+      <li><a href="#kw-about">About</a></li>
+      <li><a href="https://calendly.com/syed-kandz" target="_blank" class="kw-nav-cta">Book a Call</a></li>
+    </ul>
+    <button class="kw-hamburger" id="kwHamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- mobile menu -->
+  <div class="kw-mobile-menu" id="kwMobileMenu">
+    <a href="#kw" onclick="closeMobileMenu()">Home</a>
+    <a href="#kw-industries" onclick="closeMobileMenu()">Industries</a>
+    <a href="#kw-services" onclick="closeMobileMenu()">Services</a>
+    <a href="#kw-about" onclick="closeMobileMenu()">About</a>
+    <a href="https://calendly.com/syed-kandz" target="_blank" class="kw-nav-cta">Book a Call →</a>
+  </div>
+
   <!-- ═══ HERO ═══ -->
-  <section class="hero">
+  <section class="hero" style="padding-top:168px;">
     <div class="hero-orb hero-orb-a"></div>
     <div class="hero-orb hero-orb-b"></div>
 
@@ -845,6 +954,12 @@ body,.sqs-layout,.sqs-row,.sqs-col-12,.sqs-block,.sqs-block-content,
 </div>
 
 <script>
+function closeMobileMenu(){
+  document.getElementById('kwMobileMenu').classList.remove('open');
+}
+document.getElementById('kwHamburger').addEventListener('click',function(){
+  document.getElementById('kwMobileMenu').classList.toggle('open');
+});
 (function(){
   var els=document.querySelectorAll('.reveal');
   var ro=new IntersectionObserver(function(entries){
