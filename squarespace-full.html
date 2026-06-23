@@ -570,6 +570,75 @@ html,body{overflow-x:hidden!important;max-width:100%!important;}
   .hero-socials{gap:6px!important;}
   .social-icon{width:32px;height:32px;}
 }
+
+/* ════════════════════════════
+   BOOKING MODAL
+════════════════════════════ */
+.kw-modal-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(2,6,2,.82);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  z-index:1000000;
+  align-items:center;justify-content:center;
+  padding:24px;
+}
+.kw-modal-overlay.open{display:flex;}
+.kw-modal-box{
+  position:relative;width:100%;max-width:480px;
+  max-height:90vh;overflow-y:auto;
+  background:#070F07;
+  border:1px solid rgba(34,197,94,.2);
+  border-radius:24px;padding:40px 36px;
+  box-shadow:0 30px 90px rgba(0,0,0,.6);
+}
+.kw-modal-close{
+  position:absolute;top:18px;right:18px;
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(34,197,94,.08);
+  border:1px solid rgba(34,197,94,.2);
+  color:#DCFCE7;font-size:18px;line-height:1;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+.kw-modal-close:hover{background:rgba(34,197,94,.18);}
+.kw-modal-box h3{
+  font-family:'Playfair Display',serif;
+  font-size:26px;font-weight:700;color:#DCFCE7;margin-bottom:8px;padding-right:30px;
+}
+.kw-modal-box p.kw-modal-sub{font-size:14px;color:rgba(220,252,231,.45);margin-bottom:26px;line-height:1.6;}
+.kw-field{margin-bottom:18px;}
+.kw-field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.kw-field label{
+  display:block;font-size:12px;font-weight:600;letter-spacing:.5px;
+  color:rgba(220,252,231,.55);margin-bottom:7px;text-transform:uppercase;
+}
+.kw-field input,.kw-field textarea{
+  width:100%;background:rgba(34,197,94,.05);
+  border:1px solid rgba(34,197,94,.18);border-radius:12px;
+  padding:13px 16px;font-size:14px;color:#DCFCE7;
+  font-family:'Inter',sans-serif;outline:none;transition:border-color .25s,background .25s;
+}
+.kw-field input::placeholder,.kw-field textarea::placeholder{color:rgba(220,252,231,.25);}
+.kw-field input:focus,.kw-field textarea:focus{border-color:rgba(34,197,94,.55);background:rgba(34,197,94,.09);}
+.kw-field textarea{resize:vertical;min-height:90px;line-height:1.6;font-family:'Inter',sans-serif;}
+.kw-word-count{font-size:11px;color:rgba(220,252,231,.35);text-align:right;margin-top:6px;}
+.kw-modal-submit{
+  width:100%;margin-top:8px;
+  background:linear-gradient(135deg,#16A34A,#22C55E);
+  color:#fff;border:none;padding:15px 0;border-radius:100px;
+  font-size:15px;font-weight:700;cursor:pointer;
+  font-family:'Inter',sans-serif;letter-spacing:.3px;
+  transition:all .3s;box-shadow:0 4px 30px rgba(34,197,94,.3);
+}
+.kw-modal-submit:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(34,197,94,.45);}
+.kw-modal-submit:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+.kw-modal-msg{font-size:14px;margin-top:16px;text-align:center;line-height:1.6;display:none;}
+.kw-modal-msg.show{display:block;}
+.kw-modal-msg.success{color:#4ade80;}
+.kw-modal-msg.error{color:#f87171;}
+@media(max-width:480px){
+  .kw-modal-box{padding:30px 22px;border-radius:20px;}
+  .kw-field-row{grid-template-columns:1fr;gap:0;}
+}
 </style>
 
 <div id="kw">
@@ -582,7 +651,7 @@ html,body{overflow-x:hidden!important;max-width:100%!important;}
       <li><a href="#kw-industries">Industries</a></li>
       <li><a href="#kw-services">Services</a></li>
       <li><a href="#kw-about">About</a></li>
-      <li><a href="https://calendly.com/syed-kandz" target="_blank" class="kw-nav-cta">Book a Call</a></li>
+      <li><a href="#" onclick="openBookingModal();return false;" class="kw-nav-cta">Book a Call</a></li>
     </ul>
     <button class="kw-hamburger" id="kwHamburger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -595,7 +664,7 @@ html,body{overflow-x:hidden!important;max-width:100%!important;}
     <a href="#kw-industries" onclick="closeMobileMenu()">Industries</a>
     <a href="#kw-services" onclick="closeMobileMenu()">Services</a>
     <a href="#kw-about" onclick="closeMobileMenu()">About</a>
-    <a href="https://calendly.com/syed-kandz" target="_blank" class="kw-nav-cta">Book a Call →</a>
+    <a href="#" onclick="openBookingModal();closeMobileMenu();return false;" class="kw-nav-cta">Book a Call →</a>
   </div>
 
   <!-- ═══ HERO ═══ -->
@@ -635,7 +704,7 @@ html,body{overflow-x:hidden!important;max-width:100%!important;}
     </p>
 
     <div class="hero-btns au d4">
-      <a href="https://calendly.com/syed-kandz" target="_blank" class="btn-main">Book Free Consultation →</a>
+      <a href="#" onclick="openBookingModal();return false;" class="btn-main">Book Free Consultation →</a>
       <a href="#kw-services" class="btn-ghost">Explore Services</a>
     </div>
 
@@ -985,7 +1054,7 @@ html,body{overflow-x:hidden!important;max-width:100%!important;}
       <h2>Let's Build Your<br><span class="grad-text">Growth Engine</span></h2>
       <p>Book a free 30-minute strategy call. No commitment. Just clarity on how we can help you grow.</p>
       <div class="cta-btns">
-        <a href="https://calendly.com/syed-kandz" target="_blank" class="btn-main lg">Book Free Strategy Call →</a>
+        <a href="#" onclick="openBookingModal();return false;" class="btn-main lg">Book Free Strategy Call →</a>
         <a href="mailto:info@kandzcomms.com" class="btn-ghost">Send Us a Message</a>
       </div>
     </div>
@@ -1001,9 +1070,45 @@ html,body{overflow-x:hidden!important;max-width:100%!important;}
       <a href="#kw-industries">Industries</a>
       <a href="#kw-services">Services</a>
       <a href="#kw-about">About</a>
-      <a href="https://calendly.com/syed-kandz" target="_blank">Book a Call</a>
+      <a href="#" onclick="openBookingModal();return false;">Book a Call</a>
     </div>
     <div class="footer-copy">© 2025 KANDZ Communications. All rights reserved.</div>
+  </div>
+
+  <!-- ═══ BOOK A CONSULTATION MODAL ═══ -->
+  <div class="kw-modal-overlay" id="kwBookingModal">
+    <div class="kw-modal-box">
+      <button class="kw-modal-close" id="kwModalClose" aria-label="Close">✕</button>
+      <h3>Book a Free Consultation</h3>
+      <p class="kw-modal-sub">Share your details and our team will reach out to schedule your free strategy call.</p>
+      <form id="kwBookingForm">
+        <div class="kw-field-row">
+          <div class="kw-field">
+            <label for="kwFirstName">First Name</label>
+            <input type="text" id="kwFirstName" name="firstName" placeholder="John" required>
+          </div>
+          <div class="kw-field">
+            <label for="kwLastName">Last Name</label>
+            <input type="text" id="kwLastName" name="lastName" placeholder="Doe" required>
+          </div>
+        </div>
+        <div class="kw-field">
+          <label for="kwPhone">Phone Number</label>
+          <input type="tel" id="kwPhone" name="phone" placeholder="+1 (201) 555-0123" required>
+        </div>
+        <div class="kw-field">
+          <label for="kwEmail">Email</label>
+          <input type="email" id="kwEmail" name="email" placeholder="john@company.com" required>
+        </div>
+        <div class="kw-field">
+          <label for="kwNotes">Additional Notes <span style="text-transform:none;font-weight:400;">(optional, up to 200 words)</span></label>
+          <textarea id="kwNotes" name="notes" placeholder="Tell us a bit about your business and what you're looking for..."></textarea>
+          <div class="kw-word-count" id="kwWordCount">0 / 200 words</div>
+        </div>
+        <button type="submit" class="kw-modal-submit" id="kwSubmitBtn">Submit Request →</button>
+        <div class="kw-modal-msg" id="kwModalMsg"></div>
+      </form>
+    </div>
   </div>
 
 </div>
@@ -1047,6 +1152,81 @@ document.getElementById('kwHamburger').addEventListener('click',function(){
       e.preventDefault();
       var t=document.querySelector(this.getAttribute('href'));
       if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+})();
+
+(function(){
+  var overlay=document.getElementById('kwBookingModal');
+  var closeBtn=document.getElementById('kwModalClose');
+  var form=document.getElementById('kwBookingForm');
+  var notes=document.getElementById('kwNotes');
+  var wordCount=document.getElementById('kwWordCount');
+  var submitBtn=document.getElementById('kwSubmitBtn');
+  var msg=document.getElementById('kwModalMsg');
+
+  window.openBookingModal=function(){
+    overlay.classList.add('open');
+    document.body.style.overflow='hidden';
+  };
+  window.closeBookingModal=function(){
+    overlay.classList.remove('open');
+    document.body.style.overflow='';
+  };
+  closeBtn.addEventListener('click',window.closeBookingModal);
+  overlay.addEventListener('click',function(e){
+    if(e.target===overlay)window.closeBookingModal();
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape')window.closeBookingModal();
+  });
+
+  notes.addEventListener('input',function(){
+    var words=notes.value.trim().split(/\s+/).filter(Boolean);
+    if(words.length>200){
+      notes.value=words.slice(0,200).join(' ');
+      words=words.slice(0,200);
+    }
+    wordCount.textContent=words.length+' / 200 words';
+  });
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    msg.className='kw-modal-msg';
+    submitBtn.disabled=true;
+    submitBtn.textContent='Sending...';
+
+    var payload={
+      "First Name":document.getElementById('kwFirstName').value,
+      "Last Name":document.getElementById('kwLastName').value,
+      "Phone Number":document.getElementById('kwPhone').value,
+      "Email":document.getElementById('kwEmail').value,
+      "Additional Notes":notes.value,
+      "_subject":"New Consultation Request - KANDZ Website",
+      "_template":"table",
+      "_captcha":"false"
+    };
+
+    fetch("https://formsubmit.co/ajax/syed@gmail.com",{
+      method:"POST",
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify(payload)
+    })
+    .then(function(res){return res.json();})
+    .then(function(){
+      msg.textContent="Thank you! Your request has been submitted. We'll be in touch shortly.";
+      msg.className='kw-modal-msg show success';
+      form.reset();
+      wordCount.textContent='0 / 200 words';
+      submitBtn.disabled=false;
+      submitBtn.textContent='Submit Request →';
+      setTimeout(window.closeBookingModal,2600);
+    })
+    .catch(function(){
+      msg.textContent="Something went wrong. Please email us directly at syed@gmail.com.";
+      msg.className='kw-modal-msg show error';
+      submitBtn.disabled=false;
+      submitBtn.textContent='Submit Request →';
     });
   });
 })();
